@@ -1,10 +1,5 @@
-/**
- * src/styles/settings.scss
- *
- * Configures SASS variables and Vuetify overwrites
- */
 
-// https://next.vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify' with (
-//   $color-pack: false
-// );
+.btn_TancarSessio {
+    color: white;
+    background-color: #00a9e0;
+  }
