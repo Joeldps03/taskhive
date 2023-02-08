@@ -100,7 +100,6 @@ class bdd
         catch(PDOException $e) {
             return "Error: " . $e->getMessage();
         }
-
     }
 
     //Funció per a Editar les tàsques
@@ -186,9 +185,30 @@ class bdd
     }
 
     //Funció per a llistar les Usuaris
-    public static function llistarusuaris($rol)
+    public static function llistarusuaris()
     {
-
+        try 
+        {
+            $resposta=null;
+            //select de les tàsques ordenades per prioritat
+            $SQL = "SELECT * FROM usuaris ORDER BY nom";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->setFetchMode(PDO::FETCH_ASSOC);
+            $qFiles = $consulta->execute(); 
+            $result = $consulta->fetchAll();
+            if ($consulta->rowCount() > 0){
+                foreach($result as $tasca){
+                    $resposta[]=$tasca;
+                }
+            }
+            else{
+                echo "no Funciona";
+                exit;
+            }
+            return $resposta;
+        }
+        catch(PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
     }
-
 }
