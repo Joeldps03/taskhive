@@ -8,6 +8,19 @@
             style="width: 50px; height: 50px"
           />
         </v-col>
+        <div class="buscador">
+          <v-text-field
+        :loading="loading"
+        density="compact"
+        variant="solo"
+        label="Search templates"
+        append-inner-icon="mdi-magnify"
+        single-line
+        hide-details
+        @click:append-inner="onClick"
+      ></v-text-field>
+        </div>
+              
       </v-app-bar>
 
       <v-navigation-drawer expand-on-hover rail>
@@ -17,7 +30,7 @@
             prepend-icon="mdi-file-document"
             title="Tasques"
             @click="redirectTasques()"
-            active-color="#00a9e0"
+            active-color="blue"
             rounded="xl"
           ></v-list-item>
 
@@ -25,7 +38,7 @@
             prepend-icon="mdi-file-document-plus"
             title="Crear Tasques"
             @click="redirectCrearTasques()"
-            active-color="#00a9e0"
+            active-color="blue"
             rounded="xl"
           ></v-list-item>
 
@@ -33,7 +46,7 @@
             prepend-icon="mdi-account-multiple"
             title="Usuaris"
             @click="redirectUsuaris()"
-            active-color="#00a9e0"
+            active-color="blue"
             rounded="xl"
           ></v-list-item>
 
@@ -41,7 +54,7 @@
             prepend-icon="mdi-account-multiple-plus"
             title="Crear Usuaris"
             @click="redirectCrearUsuaris()"
-            active-color="#00a9e0"
+            active-color="blue"
             rounded="xl"
           ></v-list-item>
 
@@ -50,14 +63,20 @@
             prepend-icon="mdi-logout"
             title="Tencar Sessió"
             @click="tencarSessio()"
-            active-color="#00a9e0"
+            active-color="blue"
             rounded="xl"
           ></v-list-item>
 
         </v-list>
       </v-navigation-drawer>
       <v-main style="height: 100%"></v-main>
+
     </v-layout>
+    
+
+
+
+
   </v-card>
 </template>
 
@@ -70,9 +89,6 @@ export default {
     };
   },
   methods: {
-    submit() {
-      console.log("Buscando: " + this.search);
-    },
 
     redirectTasques() {
       this.$router.push('tasques');
