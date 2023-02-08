@@ -60,9 +60,38 @@ class bdd
     }
 
     //Funció per a crear les tàsques
-    public static function crear($nom, $descripcio, $id_usuari, $prioritat, $estat, $comentari)
+    public static function creartasques($nom, $descripcio, $id_usuari, $prioritat, $estat, $comentaris_tecnics)
     {
-
+        //a id usuari es farà un select per a comprobar el rol i verificar si pot generar tasques
+        //de moment:
+        $rol = "admin";
+        if ($rol == "tecnic") {
+            echo ("No tens permisos per afegir tasques");
+        } else {
+            try {
+                //consulta d'inserció
+                $SQL = "INSERT INTO tasques (nom, descripcio, id_usuari, prioritat, estat, comentaris_tecnics) VALUES (:nom, :descripcio, :id_usuari, :prioritat, :estat, :comentaris_tecnics)";
+                $consulta = (BdD::$connection)->prepare($SQL);
+                $consulta->bindParam("nom", $nom);
+                $consulta->bindParam("descripcio", $descripcio);
+                $consulta->bindParam("id_usuari", $id_usuari);
+                $consulta->bindParam("prioritat", $prioritat);
+                $consulta->bindParam("estat", $estat);
+                $consulta->bindParam("comentaris_tecnics", $comentaris_tecnics);
+                // executem
+                try {
+                    $result = $consulta->execute();
+                    if ($result)
+                        echo "Inserció realitzada";
+                    else
+                        echo "Inserció no realitzada";
+                } catch (PDOException $e) {
+                    echo "Errada en la inserció: " . $e->getMessage();
+                }
+            } catch (PDOException $e) {
+                echo "Errada en la conexió: " . $e->getMessage();
+            }
+        }
     }
 
     //Funció per a crear les Usuaris
