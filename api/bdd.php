@@ -34,9 +34,17 @@ class bdd
         }
     }
     //Comprobem que l'usuari està registrat
-    public static function login($nom, $password, $token)
+    public static function login($nom, /*$password, $token*/)
     {
-        
+        $SQL = "SELECT * FROM usuaris WHERE nom = :nom";
+        $consulta = (BdD::$connection)->prepare($SQL);
+        $consulta->bindParam(':nom',$nom);
+        $qFiles = $consulta->execute(); 
+        var_dump( $consulta->rowCount());
+        if ($consulta->rowCount() > 0)
+            return true;
+        else
+            return false;
     }
 
     //Funció per a llsitar les tàsques
@@ -61,8 +69,35 @@ class bdd
     public static function crearusuari($nom, $mail, $rol, $password)
     {
         //Generem Api key 
-        $apikey = bin2hex(random_bytes(12));
-
+        // $apikey = bin2hex(random_bytes(12));
+        try 
+        {
+            //consulta d'inserció
+            $SQL = "INSERT INTO usuaris (nom, email, rol, contrasenya) VALUES (:nom, :email, :rol, :contrasenya)";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("nom",$nom);
+            $consulta->bindParam("email",$mail);
+            $consulta->bindParam("rol",$rol);
+            $consulta->bindParam("contrasenya",$password);
+            // executem
+            try
+            {
+                $result = $consulta->execute();
+            
+                if ($result)	
+                    echo "Inserció realitzada";
+                else
+                    echo "Inserció no realitzada";
+            }
+            catch(PDOException $e)
+            {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        
+        }
+        catch(PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        }
     }
 
     //Funció per a editar les Usuaris
