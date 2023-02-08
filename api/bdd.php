@@ -48,8 +48,58 @@ class bdd
     }
 
     //Funció per a llsitar les tàsques
-    public static function llistarTasques($rol, $nom)
+    public static function llistarTasquesUser($id_usuari)
     {
+        try 
+        {
+            $resposta=null;
+            //select de les tàsques ordenades per prioritat
+            $SQL = "SELECT * FROM tasques WHERE id_usuari = :id_usuari ORDER BY prioritat";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("id_usuari", $id_usuari);
+            $consulta->setFetchMode(PDO::FETCH_ASSOC);
+            $qFiles = $consulta->execute(); 
+            $result = $consulta->fetchAll();
+            if ($consulta->rowCount() > 0){
+                foreach($result as $tasca){
+                    $resposta[]=$tasca;
+                }
+            }
+            else{
+                echo "no Funciona";
+                exit;
+            }
+            return $resposta;
+        }
+        catch(PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+    public static function llistarTasques()
+    {
+        try 
+        {
+            $resposta=null;
+            //select de les tàsques ordenades per prioritat
+            $SQL = "SELECT * FROM tasques ORDER BY prioritat";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->setFetchMode(PDO::FETCH_ASSOC);
+            $qFiles = $consulta->execute(); 
+            $result = $consulta->fetchAll();
+            if ($consulta->rowCount() > 0){
+                foreach($result as $tasca){
+                    $resposta[]=$tasca;
+                }
+            }
+            else{
+                echo "no Funciona";
+                exit;
+            }
+            return $resposta;
+        }
+        catch(PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
 
     }
 
