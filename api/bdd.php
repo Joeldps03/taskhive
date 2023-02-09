@@ -103,11 +103,38 @@ class bdd
     }
 
     //Funció per a Editar les tàsques
-    public static function editartasques($nom, $descripcio, $id_usuari, $prioritat, $estat, $comentari)
+    public static function editartasques($id, $nom, $descripcio, $id_usuari, $prioritat, $estat, $comentari)
     {
+        try {
+            //consulta d'inserció
+            $SQL = "UPDATE tasques SET nom = :nom, descripcio =:descripcio, id_usuari=:id_usuari, prioritat=:prioritat, estat=:estat, comentaris_tecnics=:comentaris_tecnics WHERE id = :id";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("nom", $nom);
+            $consulta->bindParam("descripcio", $descripcio);
+            $consulta->bindParam("id_usuari", $id_usuari);
+            $consulta->bindParam("prioritat", $prioritat);
+            $consulta->bindParam("estat", $estat);
+            $consulta->bindParam("comentaris_tecnics", $comentari);
+            $consulta->bindParam("id", $id);
 
+            // executem
+            try {
+                $result = $consulta->execute();
+                if ($result)
+                    echo "Inserció realitzada";
+                else
+                    echo "Inserció no realitzada";
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        }
     }
 
+    public static function editartasquestecnic($nom, $descripcio, $id_usuari, $prioritat, $estat, $comentari)
+    {
+    }
     //Funció per a crear les tàsques
     public static function creartasques($nom, $descripcio, $id_usuari, $prioritat, $estat, $comentaris_tecnics)
     {
