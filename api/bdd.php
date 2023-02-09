@@ -266,6 +266,23 @@ class bdd
         }
     }
 
+    public static function deletetokendetokens($token){
+        try {
+            //consulta d'inserció
+            $SQL = "DELETE FROM tokens WHERE token = :token";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("token", $token);
+            try {
+                $result = $consulta->execute();
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        }
+
+    }
+
     //Funció per a llistar les Usuaris
     public static function llistarusuaris()
     {
