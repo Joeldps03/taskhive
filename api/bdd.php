@@ -120,10 +120,25 @@ class bdd
             // executem
             try {
                 $result = $consulta->execute();
-                if ($result)
-                    echo "Inserció realitzada";
-                else
-                    echo "Inserció no realitzada";
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        }
+    }
+    public static function editartasquestecnic($id, $estat, $comentari)
+    {
+        try {
+            //consulta d'inserció
+            $SQL = "UPDATE tasques SET estat=:estat, comentaris_tecnics=:comentaris_tecnics WHERE id = :id";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("estat", $estat);
+            $consulta->bindParam("comentaris_tecnics", $comentari);
+            $consulta->bindParam("id", $id);
+            // executem
+            try {
+                $result = $consulta->execute();
             } catch (PDOException $e) {
                 echo "Errada en la inserció: " . $e->getMessage();
             }
@@ -132,9 +147,6 @@ class bdd
         }
     }
 
-    public static function editartasquestecnic($nom, $descripcio, $id_usuari, $prioritat, $estat, $comentari)
-    {
-    }
     //Funció per a crear les tàsques
     public static function creartasques($nom, $descripcio, $id_usuari, $prioritat, $estat, $comentaris_tecnics)
     {
@@ -157,10 +169,6 @@ class bdd
                 // executem
                 try {
                     $result = $consulta->execute();
-                    if ($result)
-                        echo "Inserció realitzada";
-                    else
-                        echo "Inserció no realitzada";
                 } catch (PDOException $e) {
                     echo "Errada en la inserció: " . $e->getMessage();
                 }
@@ -188,17 +196,11 @@ class bdd
             try
             {
                 $result = $consulta->execute();
-            
-                if ($result)	
-                    echo "Inserció realitzada";
-                else
-                    echo "Inserció no realitzada";
             }
             catch(PDOException $e)
             {
                 echo "Errada en la inserció: " . $e->getMessage();
             }
-        
         }
         catch(PDOException $e) {
             echo "Errada en la conexió: " . $e->getMessage();
@@ -208,7 +210,7 @@ class bdd
     //Funció per a editar les Usuaris
     public static function editarusuari($nom, $mail, $rol, $password, $apikey)
     {
-
+        
     }
 
     //Funció per a llistar les Usuaris
