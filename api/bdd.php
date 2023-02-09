@@ -231,7 +231,7 @@ class bdd
             echo "Errada en la conexió: " . $e->getMessage();
         } 
     }
-    public static function inserirtoken($id,$token)
+    public static function inserirtokenusers($id,$token)
     {
         try {
             //consulta d'inserció
@@ -249,6 +249,23 @@ class bdd
             echo "Errada en la conexió: " . $e->getMessage();
         } 
     }
+    public static function inserirtokentokens($token)
+    {
+        try {
+            //consulta d'inserció
+            $SQL = "INSERT INTO tokens (token) VALUES (:token)";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("token", $token);
+            try {
+                $result = $consulta->execute();
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        }
+    }
+
     //Funció per a llistar les Usuaris
     public static function llistarusuaris()
     {
