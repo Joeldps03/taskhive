@@ -1,97 +1,81 @@
 <template>
   <div id="pantallaCarga">
-
-
-     <v-card class="divCentre">
-      <v-form
-        v-model="form"
-        @submit.prevent="onSubmit"
-      >
-
-      <v-col
-          cols="12"
-          sm="6"
-        > 
-
-                <v-text-field
+    <v-form v-model="form" @submit.prevent="onSubmit" class="divCentre">
+      <v-col cols="20" sm="9">
+        <v-text-field
           v-model="email"
           :readonly="loading"
-          :rules="[required]"
-          class="mb-2"
           clearable
-          label="Email"
+          :rules="[rules.required, rules.email]"
+          name="correu"
+          label="Correu"
+          bg-color="white"
+          class="input-group--focused"
+          color="blue"
         ></v-text-field>
-          
-        </v-col>
 
-        <v-col
-          cols="12"
-          sm="6"
-        > 
+        <br />
 
         <v-text-field
-            :append-icon="mostrar ? 'mdi-eye' : 'mdi-eye-off'"
-            :parametres="[parametres.obligatori, parametres.minim]"
-            :type="mostrar ? 'text' : 'password'"
-            name="contrasenya"
-            label="Contraseya"
-            bg-color="white"
-            color="blue"
-            hint="Com a mínim 8 caràcters"
-            
-            @click:append="mostrar = !mostrar"
-          ></v-text-field>
+          v-model="password"
+          :readonly="loading"
+          clearable
+          :append-icon="mostrar ? 'mdi-eye' : 'mdi-eye-off'"
+          :rules="[rules.required, rules.min]"
+          :type="mostrar ? 'text' : 'password'"
+          name="contrasenya"
+          label="Contraseya"
+          bg-color="white"
+          class="input-group--focused"
+          color="blue"
+          @click:append="mostrar = !mostrar"
+        ></v-text-field>
 
-        <br>
-        </v-col>
+        <br />
+        <br />
+
         <v-btn
-          :disabled="!form"
           :loading="loading"
-          block
-          color="success"
+          color="black"
           size="large"
           type="submit"
-          variant="elevated"
+          variant="outlined"
         >
-          Sign In
+          Iniciar Sessió
         </v-btn>
-      </v-form>
-    </v-card>
-
-    <!-- <div class="divCentre"> -->
-      
-       <!-- <v-col
-          cols="12"
-          sm="6"
-        > -->
-          
-        <!-- </v-col> -->
-      
-      
-    <!-- </div> -->
-
+      </v-col>
+    </v-form>
   </div>
-
-  
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        mostrar: true,
-        contrasenya: 'Contrasenya',
-        parametres: {
-          obligatori: value => !!value || 'Obligatori.',
-          minim: v => v.length >= 8 || 'Mínim 8 caràcters.',
-          comprovarContrasenya: () => (`El correu electrònic i la contrasenya que heu introduït no coincideixen.`),
+export default {
+  data() {
+    return {
+      mostrar: true,
+      rules: {
+        rules: (value) => !!value || "Obligatori.",
+        min: (v) => v.length >= 8 || "Mínim 8 caràcters.",
+        comprovarContrasenya: () =>
+          `El correu electrònic i la contrasenya que heu introduït no coincideixen.`,
+        email: (value) => {
+          const pattern =
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+          return pattern.test(value) || "Correu invalid.";
         },
-      }
-    },
-  }
+      },
+      email: null,
+      password: null,
+      loading: false,
+    };
+  },
+  methods: {
+    onSubmit() {},
+  },
+};
 </script>
 
-<style>
+<style >
 #pantallaCarga {
   background: url("../assets/imatges/IniciSessio.png");
   width: 100%;
@@ -103,17 +87,21 @@
   position: absolute;
   padding: 20px;
   text-align: center;
-  top: 52%;
+  top: 56%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 1200px;
   height: 600px;
-  background-color: black;
-  text-align: center;
-
   border-radius: 50px;
-  
-  
-  
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background-color: grey;
+  font-weight: bold;
+  background: radial-gradient(#00a9e0, black);
+
+  /* width | style | color */
+  border: medium solid #00a9e0;
 }
 </style>
