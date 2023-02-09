@@ -310,4 +310,30 @@ class bdd
             return "Error: " . $e->getMessage();
         }
     }
+
+    public static function existeixtokentokens($token)
+    {
+        $SQL = "SELECT * FROM tokens WHERE token = :token";
+        $consulta = (BdD::$connection)->prepare($SQL);
+        $consulta->bindParam(':token',$token);
+        $qFiles = $consulta->execute(); 
+        var_dump( $consulta->rowCount());
+        if ($consulta->rowCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public static function existeixtokenusuaris($token)
+    {
+        $SQL = "SELECT * FROM usuaris WHERE token = :token";
+        $consulta = (BdD::$connection)->prepare($SQL);
+        $consulta->bindParam(':token',$token);
+        $qFiles = $consulta->execute(); 
+        var_dump( $consulta->rowCount());
+        if ($consulta->rowCount() > 0)
+            return true;
+        else
+            return false;
+    }
 }
