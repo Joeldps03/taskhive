@@ -103,9 +103,48 @@ class bdd
     }
 
     //Funció per a Editar les tàsques
-    public static function editartasques($nom, $descripcio, $id_usuari, $prioritat, $estat, $comentari)
+    public static function editartasques($id, $nom, $descripcio, $id_usuari, $prioritat, $estat, $comentari)
     {
+        try {
+            //consulta d'inserció
+            $SQL = "UPDATE tasques SET nom = :nom, descripcio =:descripcio, id_usuari=:id_usuari, prioritat=:prioritat, estat=:estat, comentaris_tecnics=:comentaris_tecnics WHERE id = :id";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("nom", $nom);
+            $consulta->bindParam("descripcio", $descripcio);
+            $consulta->bindParam("id_usuari", $id_usuari);
+            $consulta->bindParam("prioritat", $prioritat);
+            $consulta->bindParam("estat", $estat);
+            $consulta->bindParam("comentaris_tecnics", $comentari);
+            $consulta->bindParam("id", $id);
 
+            // executem
+            try {
+                $result = $consulta->execute();
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        }
+    }
+    public static function editartasquestecnic($id, $estat, $comentari)
+    {
+        try {
+            //consulta d'inserció
+            $SQL = "UPDATE tasques SET estat=:estat, comentaris_tecnics=:comentaris_tecnics WHERE id = :id";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("estat", $estat);
+            $consulta->bindParam("comentaris_tecnics", $comentari);
+            $consulta->bindParam("id", $id);
+            // executem
+            try {
+                $result = $consulta->execute();
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        }
     }
 
     //Funció per a crear les tàsques
@@ -130,10 +169,6 @@ class bdd
                 // executem
                 try {
                     $result = $consulta->execute();
-                    if ($result)
-                        echo "Inserció realitzada";
-                    else
-                        echo "Inserció no realitzada";
                 } catch (PDOException $e) {
                     echo "Errada en la inserció: " . $e->getMessage();
                 }
@@ -161,11 +196,6 @@ class bdd
             try
             {
                 $result = $consulta->execute();
-            
-                if ($result)	
-                    echo "Inserció realitzada";
-                else
-                    echo "Inserció no realitzada";
             }
             catch(PDOException $e)
             {
@@ -179,8 +209,77 @@ class bdd
     }
 
     //Funció per a editar les Usuaris
-    public static function editarusuari($nom, $mail, $rol, $password, $apikey)
+    public static function editarusuari($id,$nom, $email, $rol, $contrasenya, $apikey)
     {
+        try {
+            //consulta d'inserció
+            $SQL = "UPDATE usuaris SET nom=:nom, email=:email, rol=:rol, apikey=:apikey, contrasenya=:contrasenya WHERE id = :id";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("nom", $nom);
+            $consulta->bindParam("email", $email);
+            $consulta->bindParam("rol", $rol);
+            $consulta->bindParam("apikey", $apikey);
+            $consulta->bindParam("contrasenya", $contrasenya);
+            $consulta->bindParam("id", $id);
+            // executem
+            try {
+                $result = $consulta->execute();
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        } 
+    }
+    public static function inserirtokenusers($id,$token)
+    {
+        try {
+            //consulta d'inserció
+            $SQL = "UPDATE usuaris SET token=:token WHERE id = :id";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("token", $token);
+            $consulta->bindParam("id", $id);
+            // executem
+            try {
+                $result = $consulta->execute();
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        } 
+    }
+    public static function inserirtokentokens($token)
+    {
+        try {
+            //consulta d'inserció
+            $SQL = "INSERT INTO tokens (token) VALUES (:token)";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("token", $token);
+            try {
+                $result = $consulta->execute();
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        }
+    }
+
+    public static function deletetokendetokens($token){
+        try {
+            //consulta d'inserció
+            $SQL = "DELETE FROM tokens WHERE token = :token";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("token", $token);
+            try {
+                $result = $consulta->execute();
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        }
 
     }
 
