@@ -36,7 +36,7 @@ class bdd
     }
 
     //Comprobem que l'usuari està registrat
-    public static function login($nom, /*$password, $token*/)
+    public static function login($nom)
     {
         $SQL = "SELECT * FROM usuaris WHERE nom = :nom";
         $consulta = (BdD::$connection)->prepare($SQL);
@@ -220,16 +220,15 @@ class bdd
 
     //Funció per a editar les Usuaris
     // funció disponible per a l'admin
-    public static function editarusuari($id,$nom, $email, $rol, $contrasenya, $apikey)
+    public static function editarusuari($id,$nom, $email, $rol, $contrasenya)
     {
         try {
             //consulta d'inserció
-            $SQL = "UPDATE usuaris SET nom=:nom, email=:email, rol=:rol, apikey=:apikey, contrasenya=:contrasenya WHERE id = :id";
+            $SQL = "UPDATE usuaris SET nom=:nom, email=:email, rol=:rol, contrasenya=:contrasenya WHERE id = :id";
             $consulta = (BdD::$connection)->prepare($SQL);
             $consulta->bindParam("nom", $nom);
             $consulta->bindParam("email", $email);
             $consulta->bindParam("rol", $rol);
-            $consulta->bindParam("apikey", $apikey);
             $consulta->bindParam("contrasenya", $contrasenya);
             $consulta->bindParam("id", $id);
             try {
@@ -311,7 +310,7 @@ class bdd
     //Funció per a eliminar tokens de la taula de tokens
     public static function deletetokendetokens($token){
         try {
-            //consulta d'inserció
+            //Consulta per eliminar el registre de la taula de tokens
             $SQL = "DELETE FROM tokens WHERE token = :token";
             $consulta = (BdD::$connection)->prepare($SQL);
             $consulta->bindParam("token", $token);
@@ -329,6 +328,7 @@ class bdd
     //Mirar si el token és existent
     public static function existeixtokentokens($token)
     {
+        //Select per mirar el token de les dades
         $SQL = "SELECT * FROM tokens WHERE token = :token";
         $consulta = (BdD::$connection)->prepare($SQL);
         $consulta->bindParam(':token',$token);
@@ -343,14 +343,18 @@ class bdd
     //Mirar si el token és existent
     public static function existeixtokenusuaris($token)
     {
+        $result=null;
+        //Consulta per mirar si el token existeix
         $SQL = "SELECT * FROM usuaris WHERE token = :token";
         $consulta = (BdD::$connection)->prepare($SQL);
         $consulta->bindParam(':token',$token);
         $qFiles = $consulta->execute(); 
         var_dump( $consulta->rowCount());
-        if ($consulta->rowCount() > 0)
-            return true;
-        else
-            return false;
+        $result = $consulta->fetchAll();
+        if ($consulta->rowCount() > 0){
+            foreach($result as $tasca){
+                $resposta[]=$tasca;
+            }
+        }
     }
 }
