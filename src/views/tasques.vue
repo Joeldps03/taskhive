@@ -4,7 +4,9 @@
       <layout> </layout>
       <v-main>
         <v-container class="container">
-        
+          <div class="titul">
+            <h1>Tasques</h1>
+          </div>
           <v-table fixed-header height="100%" show-expand>
             <thead>
               <tr>
@@ -56,12 +58,5 @@ export default {
 };
 </script>
 
-<style>
-.container{
-  background-color: black;
-  height: 718px;
-  margin-top: 50px;
-
-
-}
+<style src="@/styles/settings.scss">
 </style>

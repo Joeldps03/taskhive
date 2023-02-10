@@ -3,8 +3,11 @@
     <v-layout>
       <layout> </layout>
       <v-main>
-        <v-container class="containerUsuaris">
         
+        <v-container class="container">
+          <div class="titul">
+            <h1>Usuaris</h1>
+          </div>
           <v-table fixed-header height="100%" show-expand>
             <thead>
               <tr>
@@ -56,12 +59,6 @@ export default {
 };
 </script>
 
-<style>
-.containerUsuaris{
-  background-color: black;
-  height: 718px;
-  margin-top: 50px;
+<style src="@/styles/settings.scss">
 
-
-}
 </style>
