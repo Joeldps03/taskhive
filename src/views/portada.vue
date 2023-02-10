@@ -26,12 +26,6 @@ export default {
 };
 </script>
 
-<style>
-#pantallaCarga {
-  background: url("../assets/imatges/Pantalla_principal.png");
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-size: 100% 100%;
-}
+<style src="@/styles/settings.scss">
+
 </style>

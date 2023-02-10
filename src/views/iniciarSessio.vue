@@ -1,5 +1,5 @@
 <template>
-  <div id="pantallaCarga">
+  <div id="fonsDePantalla">
     <v-form v-model="form" @submit.prevent="onSubmit" class="divCentre">
       <v-col cols="20" sm="9">
         <v-text-field
@@ -75,33 +75,6 @@ export default {
 };
 </script>
 
-<style >
-#pantallaCarga {
-  background: url("../assets/imatges/IniciSessio.png");
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background-size: 100% 100%;
-}
-.divCentre {
-  position: absolute;
-  padding: 20px;
-  text-align: center;
-  top: 56%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1200px;
-  height: 600px;
-  border-radius: 50px;
-  align-content: center;
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  background-color: grey;
-  font-weight: bold;
-  background: radial-gradient(#00a9e0, black);
+<style src="@/styles/settings.scss">
 
-  /* width | style | color */
-  border: medium solid #00a9e0;
-}
 </style>
