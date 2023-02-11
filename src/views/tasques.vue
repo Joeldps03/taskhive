@@ -7,7 +7,7 @@
           <div class="titul">
             <h1>Tasques</h1>
           </div>
-          <v-table fixed-header height="100%" show-expand>
+          <v-table fixed-header height="700px" show-expand>
             <thead>
               <tr>
                 <th class="text-left">Tasca</th>
@@ -17,17 +17,19 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in desserts" :key="item.tasques">
+              <tr v-for="item in desserts" :key="item.id">
                 <td>{{ item.tasques }}</td>
                 <td>{{ item.prioritat }}</td>
                 <td>{{ item.estats }}</td>
                 <td>{{ item.usuariAsignat }}</td>
+                <div class="buttonEditar">
+                  <v-btn icon="mdi-pen" color="info" @click="this.$router.push("crearTasques")"></v-btn>
+                </div>
               </tr>
             </tbody>
           </v-table>
 
           <taula-tasques> </taula-tasques>
-          
         </v-container>
       </v-main>
     </v-layout>
@@ -36,7 +38,7 @@
 
 <script>
 import layout from "@/layouts/default/layout.vue";
-import taulaTasques from "@/components/taulaTasques.vue"
+import taulaTasques from "@/components/taulaTasques.vue";
 
 export default {
   components: { layout, taulaTasques },
@@ -47,10 +49,18 @@ export default {
       singleExpand: false,
       desserts: [
         {
+          id: 1,
           tasques: "Montar ordinador",
           prioritat: 9,
           estats: "Pendent",
           usuariAsignat: "Joel De Palol Sanjuan",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
         },
       ],
     };

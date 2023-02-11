@@ -83,13 +83,16 @@
     @media (max-width: 992px) {
       padding: 0;
     }
-
-    background-color: black;
+    background-color: white;
     height: 795px;
     margin-top: 10px;
   }
   .titul{
-    color: white;
+    color: black;
     margin-bottom: 4px;
   }
   
+  .buttonEditar {
+    margin-left: 25px;
+    margin-top: 3px;
+  }
