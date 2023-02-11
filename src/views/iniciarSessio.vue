@@ -1,7 +1,7 @@
 <template>
   <div id="fonsDePantalla">
     <v-form v-model="form" @submit.prevent="onSubmit" class="divCentre">
-      <v-col cols="20" sm="9">
+      <v-col cols="20"  >
         <v-text-field
           v-model="email"
           :readonly="loading"
@@ -77,4 +77,8 @@ export default {
 
 <style src="@/styles/settings.scss">
 
+ 
+
+
 </style>
+

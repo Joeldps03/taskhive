@@ -53,15 +53,23 @@
     width: 1200px;
     height: 600px;
     border-radius: 50px;
-    align-content: center;
     align-items: center;
     display: flex;
     justify-content: center;
-    background-color: grey;
     font-weight: bold;
     background: radial-gradient(#00a9e0, black);
     border: medium solid #00a9e0;
+     @media (max-width: 1200px) {
+      width: 100%;
+      height: auto;
+      top: 50%;
+      border-radius: 50px;
+      background: radial-gradient(#00a9e0, black);
+      border: medium solid #00a9e0;
+    }
   }
+
+  
 
 
   //////////////////////////////////////// FINAL INICIAR SESSIÓ ///////////////////////////////////////////////////////////////////////////////
@@ -72,6 +80,10 @@
   
 
   .container{
+    @media (max-width: 992px) {
+      padding: 0;
+    }
+
     background-color: black;
     height: 795px;
     margin-top: 10px;

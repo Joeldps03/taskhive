@@ -3,7 +3,6 @@
     <v-layout>
       <layout> </layout>
       <v-main>
-        
         <v-container class="container">
           <div class="titul">
             <h1>Usuaris</h1>
@@ -28,7 +27,6 @@
           </v-table>
 
           <taula-tasques> </taula-tasques>
-          
         </v-container>
       </v-main>
     </v-layout>
@@ -37,7 +35,7 @@
 
 <script>
 import layout from "@/layouts/default/layout.vue";
-import taulaTasques from "@/components/taulaTasques.vue"
+import taulaTasques from "@/components/taulaTasques.vue";
 
 export default {
   components: { layout, taulaTasques },
@@ -61,4 +59,17 @@ export default {
 
 <style src="@/styles/settings.scss">
 
+v-table {
+
+  @media (max-width: 992px) {
+    thead {
+      display: none;
+    }
+
+    tbody tr td {
+      display: block;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  }
+}
 </style>
