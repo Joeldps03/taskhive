@@ -38,7 +38,7 @@ const routes = [
     component: () => import("@/views/crearUsuaris.vue"),
   },
   {
-    path: "/usuairs/editar",
+    path: "/usuaris/editar",
     name: "editarUsuaris",
 
     component: () => import("@/views/editarUsuaris.vue"),

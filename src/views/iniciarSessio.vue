@@ -1,7 +1,7 @@
 <template>
   <div id="fonsDePantalla">
     <v-form v-model="form" @submit.prevent="onSubmit" class="divCentre">
-      <v-col cols="20"  >
+      <v-col cols="20">
         <v-text-field
           v-model="email"
           :readonly="loading"

@@ -31,7 +31,6 @@
             </tbody>
           </v-table>
 
-          <taula-tasques> </taula-tasques>
         </v-container>
       </v-main>
     </v-layout>
@@ -40,10 +39,9 @@
 
 <script>
 import layout from "@/layouts/default/layout.vue";
-import taulaTasques from "@/components/taulaTasques.vue";
 
 export default {
-  components: { layout, taulaTasques },
+  components: { layout },
   name: "usuaris",
   data() {
     return {

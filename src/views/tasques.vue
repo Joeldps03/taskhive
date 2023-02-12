@@ -14,6 +14,7 @@
                 <th class="text-left">Prioritat</th>
                 <th class="text-left">Estats</th>
                 <th class="text-left">Usuari asignat</th>
+                <th class="text-left"></th>
               </tr>
             </thead>
             <tbody>
@@ -23,13 +24,16 @@
                 <td>{{ item.estats }}</td>
                 <td>{{ item.usuariAsignat }}</td>
                 <div class="buttonEditar">
-                  <v-btn icon="mdi-pen" color="info" @click="this.$router.push("crearTasques")"></v-btn>
+                  <v-btn 
+                  icon="mdi-pen" 
+                  color="info" 
+                  
+                  >
+                  </v-btn>
                 </div>
               </tr>
             </tbody>
           </v-table>
-
-          <taula-tasques> </taula-tasques>
         </v-container>
       </v-main>
     </v-layout>
@@ -38,10 +42,9 @@
 
 <script>
 import layout from "@/layouts/default/layout.vue";
-import taulaTasques from "@/components/taulaTasques.vue";
 
 export default {
-  components: { layout, taulaTasques },
+  components: { layout},
   name: "tasques",
   data() {
     return {
@@ -54,6 +57,97 @@ export default {
           prioritat: 9,
           estats: "Pendent",
           usuariAsignat: "Joel De Palol Sanjuan",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
+        },
+        {
+          id: 2,
+          tasques: "Canviar CPU",
+          prioritat: 5,
+          estats: "Pendent",
+          usuariAsignat: "Arnau Soler Serra",
         },
         {
           id: 2,
