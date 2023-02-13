@@ -29,6 +29,7 @@
     rail
   >
     <v-list dense nav>
+      
       <v-list-item
         prepend-icon="mdi-file-document"
         title="Tasques"
@@ -90,23 +91,23 @@ export default {
   },
   methods: {
     redirectTasques() {
-      this.$router.push("tasques");
+      this.$router.push("/tasques");
     },
 
     redirectCrearTasques() {
-      this.$router.push("crearTasques");
+      this.$router.push("/crearTasques");
     },
 
     redirectUsuaris() {
-      this.$router.push("usuaris");
+      this.$router.push("/usuaris");
     },
 
     redirectCrearUsuaris() {
-      this.$router.push("crearUsuaris");
+      this.$router.push("/crearUsuaris");
     },
 
     tencarSessio() {
-      this.$router.push("iniciarSessio");
+      this.$router.push("/iniciarSessio");
     },
   },
 

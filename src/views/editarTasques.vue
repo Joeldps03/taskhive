@@ -83,21 +83,9 @@ import layout from "@/layouts/default/layout.vue";
 export default {
   components: { layout },
   name: "editarTasques",
-  prop: ""
+  props: ["id"]
 }
 </script>
 
 <style src="@/styles/settings.scss">
-v-table {
-  @media (max-width: 992px) {
-    thead {
-      display: none;
-    }
-
-    tbody tr td {
-      display: block;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    }
-  }
-}
 </style>

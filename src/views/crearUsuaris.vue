@@ -66,16 +66,5 @@ export default {
 </script>
 
 <style src="@/styles/settings.scss">
-v-table {
-  @media (max-width: 992px) {
-    thead {
-      display: none;
-    }
 
-    tbody tr td {
-      display: block;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    }
-  }
-}
 </style>

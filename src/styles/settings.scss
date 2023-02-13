@@ -44,7 +44,6 @@
     background-size: 100% 100%;
   }
   .divCentre {
-    min-width: 500px;
     position: absolute;
     padding: 20px;
     text-align: center;
@@ -67,6 +66,7 @@
       border-radius: 50px;
       background: radial-gradient(#00a9e0, black);
       border: medium solid #00a9e0;
+      min-width: 600px;
     }
   }
 
@@ -87,7 +87,6 @@
   }
   .container{
     min-width: 500px;
-    
     background-color: white;
     height: 795px;
     margin-top: 10px;

@@ -24,12 +24,14 @@
                 <td>{{ item.estats }}</td>
                 <td>{{ item.usuariAsignat }}</td>
                 <div class="buttonEditar">
+                  
                   <v-btn 
                   icon="mdi-pen" 
                   color="info" 
                   @click="redirectEditarTasques(item.id)"
                   >
                   </v-btn>
+
                 </div>
               </tr>
             </tbody>
@@ -78,16 +80,4 @@ export default {
 </script>
 
 <style src="@/styles/settings.scss">
-v-table {
-  @media (max-width: 992px) {
-    thead {
-      display: none;
-    }
-
-    tbody tr td {
-      display: block;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-    }
-  }
-}
 </style>
