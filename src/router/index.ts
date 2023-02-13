@@ -20,8 +20,9 @@ const routes = [
     component: () => import("@/views/tasques.vue"),
   },
   {
-    path: "/tasques/editar",
+    path: "/tasquesEditar/:id",
     name: "editarTasques",
+    props: "",
 
     component: () => import("@/views/editarTasques.vue"),
   },
@@ -38,8 +39,9 @@ const routes = [
     component: () => import("@/views/crearUsuaris.vue"),
   },
   {
-    path: "/usuaris/editar",
-    name: "editarUsuaris",
+    path: "/usuarisEditar/:id",
+    name: "usuarisEditar",
+    props: "",
 
     component: () => import("@/views/editarUsuaris.vue"),
   },

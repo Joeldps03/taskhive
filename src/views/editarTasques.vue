@@ -83,6 +83,7 @@ import layout from "@/layouts/default/layout.vue";
 export default {
   components: { layout },
   name: "editarTasques",
+  prop: ""
 }
 </script>
 

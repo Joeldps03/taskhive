@@ -3,11 +3,11 @@
     <v-layout>
       <layout> </layout>
       <v-main>
-        <v-container class="container">
+        <v-container class="container2">
           <div class="titul">
             <h1>Tasques</h1>
           </div>
-          <v-table fixed-header height="700px" show-expand>
+          <v-table fixed-header height="500px" show-expand>
             <thead>
               <tr>
                 <th class="text-left">Tasca</th>
@@ -27,7 +27,7 @@
                   <v-btn 
                   icon="mdi-pen" 
                   color="info" 
-                  
+                  @click="redirectEditarTasques(item.id)"
                   >
                   </v-btn>
                 </div>
@@ -65,100 +65,15 @@ export default {
           estats: "Pendent",
           usuariAsignat: "Arnau Soler Serra",
         },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
       ],
     };
   },
+  methods: {
+    redirectEditarTasques(id) {
+      this.$router.push("tasquesEditar/" + id);
+    },
+  }
+
 };
 </script>
 

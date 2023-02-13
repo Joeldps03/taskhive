@@ -3,11 +3,11 @@
     <v-layout>
       <layout> </layout>
       <v-main>
-        <v-container class="container">
+        <v-container class="container2">
           <div class="titul">
             <h1>Usuaris</h1>
           </div>
-          <v-table fixed-header height="700px" show-expand>
+          <v-table fixed-header height="500px" show-expand>
             <thead>
               <tr>
                 <th class="text-left">Correu</th>
@@ -24,7 +24,12 @@
                 <td>{{ item.contrasenya }}</td>
                 <td>{{ item.rol }}</td>
                 <div class="buttonEditar">
-                <v-btn icon="mdi-pen" color="info"></v-btn>
+                <v-btn 
+                  icon="mdi-pen" 
+                  color="info" 
+                  @click="redirectEditarUsuaris(item.id)"
+                  >
+                  </v-btn>
               </div>
               </tr>
               
@@ -62,93 +67,16 @@ export default {
           contrasenya: "daw4321",
           rol: "admin",
         },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
       ],
     };
   },
+  methods: {
+    redirectEditarUsuaris(id) {
+      this.$router.push("usuarisEditar/" + id);
+    },
+  }
+
+
 };
 </script>
 

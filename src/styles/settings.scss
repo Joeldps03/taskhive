@@ -44,14 +44,15 @@
     background-size: 100% 100%;
   }
   .divCentre {
+    min-width: 500px;
     position: absolute;
     padding: 20px;
     text-align: center;
     top: 56%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1200px;
-    height: 600px;
+    width: 1100px;
+    height: 500px;
     border-radius: 50px;
     align-items: center;
     display: flex;
@@ -78,11 +79,15 @@
 
   //////////////////////////////////////// TASQUES I USUARIS //////////////////////////////////////////////////////////////////////////////////
   
-
+  .container2{
+    min-width: 500px;
+    background-color: white;
+    height: 590px;
+    margin-top: 10px;
+  }
   .container{
-    @media (max-width: 992px) {
-      padding: 0;
-    }
+    min-width: 500px;
+    
     background-color: white;
     height: 795px;
     margin-top: 10px;

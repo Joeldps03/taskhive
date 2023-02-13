@@ -62,6 +62,7 @@ import layout from "@/layouts/default/layout.vue";
 export default {
   components: { layout },
   name: "editarUsuaris",
+  prop: ""
 };
 </script>
 
