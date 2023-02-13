@@ -1,9 +1,9 @@
 // Composables
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 
 const routes = [
   {
-    path: "",
+    path: "/",
     name: "portada",
     component: () => import("@/views/portada.vue"),
   },
@@ -20,8 +20,9 @@ const routes = [
     component: () => import("@/views/tasques.vue"),
   },
   {
-    path: "/tasques/editar",
+    path: "/tasquesEditar/:id",
     name: "editarTasques",
+    props: true,
 
     component: () => import("@/views/editarTasques.vue"),
   },
@@ -38,8 +39,9 @@ const routes = [
     component: () => import("@/views/crearUsuaris.vue"),
   },
   {
-    path: "/usuairs/editar",
-    name: "editarUsuaris",
+    path: "/usuarisEditar/:id",
+    name: "usuarisEditar",
+    props: true,
 
     component: () => import("@/views/editarUsuaris.vue"),
   },
@@ -52,8 +54,8 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
-  routes,
+  history: createWebHashHistory(process.env.BASE_URL),
+  routes
 });
 
 export default router;

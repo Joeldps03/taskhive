@@ -50,18 +50,82 @@
     top: 56%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1200px;
-    height: 600px;
+    width: 1100px;
+    height: 500px;
     border-radius: 50px;
-    align-content: center;
     align-items: center;
     display: flex;
     justify-content: center;
-    background-color: grey;
     font-weight: bold;
     background: radial-gradient(#00a9e0, black);
     border: medium solid #00a9e0;
+     @media (max-width: 1200px) {
+      width: 100%;
+      height: auto;
+      top: 50%;
+      border-radius: 50px;
+      background: radial-gradient(#00a9e0, black);
+      border: medium solid #00a9e0;
+      min-width: 600px;
+    }
   }
+
+  
 
 
   //////////////////////////////////////// FINAL INICIAR SESSIÓ ///////////////////////////////////////////////////////////////////////////////
+  
+
+
+  //////////////////////////////////////// TASQUES I USUARIS //////////////////////////////////////////////////////////////////////////////////
+  
+  .container2{
+    min-width: 500px;
+    background-color: white;
+    height: 590px;
+    margin-top: 10px;
+  }
+  .container{
+    min-width: 500px;
+    background-color: white;
+    height: 795px;
+    margin-top: 10px;
+  }
+  .titul{
+    color: black;
+    margin-bottom: 4px;
+  }
+  
+  .buttonEditar {
+    margin-left: 25px;
+    margin-top: 3px;
+  }
+
+
+  //////////////////////////////////////////////////// EDITAR I CREAR USUARI  /////////////////////////////////////////////////////////////////
+  
+  .buttonEditar2 {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+  }
+
+  .divAltres {
+    margin-top: 10px;
+  }
+
+  .divCentreTasca {
+    margin-top: 10px;
+    width: 800px;
+  }
+
+  ///////////////////////////////////////////////// EDITAR I CREAR TASCA ///////////////////////////////////////////////////////////////////////
+  
+
+  .divEPU {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center
+  }

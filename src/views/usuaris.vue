@@ -3,29 +3,39 @@
     <v-layout>
       <layout> </layout>
       <v-main>
-        <v-container class="containerUsuaris">
-        
-          <v-table fixed-header height="100%" show-expand>
+        <v-container class="container2">
+          <div class="titul">
+            <h1>Usuaris</h1>
+          </div>
+          <v-table fixed-header height="500px" show-expand>
             <thead>
               <tr>
                 <th class="text-left">Correu</th>
                 <th class="text-left">Nom</th>
                 <th class="text-left">Contraseya</th>
                 <th class="text-left">Rol</th>
+                <th class="text-left"></th>
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in desserts" :key="item.nom">
+              <tr v-for="item in desserts" :key="item.id">
                 <td>{{ item.correu }}</td>
                 <td>{{ item.nom }}</td>
                 <td>{{ item.contrasenya }}</td>
                 <td>{{ item.rol }}</td>
+                <div class="buttonEditar">
+                <v-btn 
+                  icon="mdi-pen" 
+                  color="info" 
+                  @click="redirectEditarUsuaris(item.id)"
+                  >
+                  </v-btn>
+              </div>
               </tr>
+              
             </tbody>
           </v-table>
 
-          <taula-tasques> </taula-tasques>
-          
         </v-container>
       </v-main>
     </v-layout>
@@ -34,10 +44,9 @@
 
 <script>
 import layout from "@/layouts/default/layout.vue";
-import taulaTasques from "@/components/taulaTasques.vue"
 
 export default {
-  components: { layout, taulaTasques },
+  components: { layout },
   name: "usuaris",
   data() {
     return {
@@ -45,23 +54,31 @@ export default {
       singleExpand: false,
       desserts: [
         {
+          id: 1,
           correu: "joeldepalol@gmail.com",
           nom: "Joel De Palol Sanjuan",
           contrasenya: "daw1234",
           rol: "admin",
         },
+        {
+          id: 2,
+          correu: "arnausoler@gmail.com",
+          nom: "Arnau Soler Serra",
+          contrasenya: "daw4321",
+          rol: "admin",
+        },
       ],
     };
   },
+  methods: {
+    redirectEditarUsuaris(id) {
+      this.$router.push("usuarisEditar/" + id);
+    },
+  }
+
+
 };
 </script>
 
-<style>
-.containerUsuaris{
-  background-color: black;
-  height: 718px;
-  margin-top: 50px;
-
-
-}
+<style src="@/styles/settings.scss">
 </style>
