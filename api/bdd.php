@@ -36,11 +36,11 @@ class bdd
     }
 
     //Comprobem que l'usuari està registrat
-    public static function login($nom)
+    public static function login($email)
     {
-        $SQL = "SELECT * FROM usuaris WHERE nom = :nom";
+        $SQL = "SELECT * FROM usuaris WHERE email = :email";
         $consulta = (BdD::$connection)->prepare($SQL);
-        $consulta->bindParam(':nom',$nom);
+        $consulta->bindParam(':email',$email);
         $qFiles = $consulta->execute(); 
         var_dump( $consulta->rowCount());
         //Retornem un boleà 

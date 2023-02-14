@@ -43,28 +43,24 @@ class Server
             //al instanciar el mètode s'estableix connecció a la base de dades
             $bdd = new bdd();
             if ($accio == 'login') {
-                if ($method == "POST") // validem que sigui per post
-                {
-                    //Mirem si existeix el usuari
-                    if ($bdd->login($_POST["nom"])) {
-                        //mirem si l'usuari te un token assignat
-                        //en cas de no tindre cap token assignat borrem el de la taula tokens generem un i l'inserim a la taula d'usuaris
-                        if (!($bdd->existeixtokenusuaris($_COOKIE["token"]))) {
-                            $bdd->deletetokendetokens($_COOKIE["token"]);
-                            //Generem un token nou
-                            generateToken2();
-                            //inserim a la base de dades de l'usuari
-                            try {
-                                $bdd->inserirtokenusers($bdd->get_id($_POST["nom"]), $_COOKIE["token"]);
-                            } catch (PDOException $e) {
-                                echo "Errada en la incerció: " . $e->getMessage();
-                            }
+                //Mirem si existeix el usuari
+                if ($bdd->login($_POST["correu"])) {
+                    echo ("Ha entrat");exit;
+                    //mirem si l'usuari te un token assignat
+                    //en cas de no tindre cap token assignat borrem el de la taula tokens generem un i l'inserim a la taula d'usuaris
+                    if (!($bdd->existeixtokenusuaris($_COOKIE["token"]))) {
+                        $bdd->deletetokendetokens($_COOKIE["token"]);
+                        //Generem un token nou
+                        generateToken2();
+                        //inserim a la base de dades de l'usuari
+                        try {
+                            $bdd->inserirtokenusers($bdd->get_id($_POST["nom"]), $_COOKIE["token"]);
+                        } catch (PDOException $e) {
+                            echo "Errada en la incerció: " . $e->getMessage();
                         }
-                    } else
-                        header('HTTP/1.1 404 usuari no trobat');
-                } else {
-                    header('HTTP/1.1 405 Mètode no disponible');
-                }
+                    }
+                } else
+                    header('HTTP/1.1 404 usuari no trobat');
             }
             if ($accio == 'tasques') {
                 if ($method == "POST") {
