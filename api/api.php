@@ -5,24 +5,10 @@ class Server
     public function serve()
     {
         //funció per a generar token
-        function generateToken()
-        {
-            //la coockie durarà una hora
-            setcookie("token", bin2hex(random_bytes(24)), time() + (3600), "/");
-            return $_COOKIE["token"];
-        }
-        function generateToken2()
-        {
-            //borrem token vell
-            setcookie("token", bin2hex(random_bytes(24)), time() + 0, "/");
-            //la coockie durarà una hora
-            setcookie("token", bin2hex(random_bytes(24)), time() + 3600, "/");
-            return $_COOKIE["token"];
-        }
         //mirem si tenim la cookie del token generada, en cas contrari generem el token
         if (!isset($_COOKIE["token"])) {
             //generem el valor del tocken
-            $token = generateToken();
+            $token = $this->generateToken();
             //creem la connecció i inserim el token generat a la base de dades dels tokens
             $bdd = new bdd();
             $bdd->inserirtokentokens($token);
@@ -33,25 +19,23 @@ class Server
             $uri = $_SERVER['REQUEST_URI'];
             $method = $_SERVER['REQUEST_METHOD'];
             $paths = explode('/', $uri);
-            // array_shift($paths); // Hack; get rid of initials empty string
-            // array_shift($paths);
-            // $clau = array_shift($paths);
-            // $resource = array_shift($paths);
-            // $accio = array_shift($path);
-            $accio = $paths[4];
+            array_shift($paths); // Hack; get rid of initials empty string
+            array_shift($paths);
+            $clau = array_shift($paths);
+            $resource = array_shift($paths);
+            $accio = array_shift($path);
             //instanciem un objecte bdd per poder accedir-hi
             //al instanciar el mètode s'estableix connecció a la base de dades
             $bdd = new bdd();
             if ($accio == 'login') {
                 //Mirem si existeix el usuari
                 if ($bdd->login($_POST["correu"])) {
-                    echo ("Ha entrat");exit;
                     //mirem si l'usuari te un token assignat
                     //en cas de no tindre cap token assignat borrem el de la taula tokens generem un i l'inserim a la taula d'usuaris
                     if (!($bdd->existeixtokenusuaris($_COOKIE["token"]))) {
                         $bdd->deletetokendetokens($_COOKIE["token"]);
                         //Generem un token nou
-                        generateToken2();
+                        $this->generateToken2();
                         //inserim a la base de dades de l'usuari
                         try {
                             $bdd->inserirtokenusers($bdd->get_id($_POST["nom"]), $_COOKIE["token"]);
@@ -62,7 +46,7 @@ class Server
                 } else
                     header('HTTP/1.1 404 usuari no trobat');
             }
-            if ($accio == 'tasques') {
+            else if ($accio == 'tasques') {
                 if ($method == "POST") {
                     //Controlem el tipus d'usuari
                     if ($_POST["rol"] == "tecnic") {
@@ -75,7 +59,7 @@ class Server
                     header('HTTP/1.1 405 Mètode no disponible');
                 }
             }
-            if ($accio == 'editartasques') {
+            else if ($accio == 'editartasques') {
                 if ($method == "POST") {
                     //Aquí hem de controlar el rol del usuari que fa la petició
                     if ($_POST["rol"] == "tecnic") {
@@ -88,35 +72,35 @@ class Server
                     header('HTTP/1.1 405 Mètode no disponible');
                 }
             }
-            if ($accio == 'creartasca') {
+            else if ($accio == 'creartasca') {
                 if ($method == "POST") {
                     $bdd->creartasques($_POST["nom"], $_POST["descripcio"], $_POST["id_usuari"], $_POST["prioritat"], $_POST["estat"], $_POST["comentari"]);
                 } else {
                     header('HTTP/1.1 405 Mètode no disponible');
                 }
             }
-            if ($accio == 'eliminar') {
+            else if ($accio == 'eliminar') {
                 if ($method == "POST") {
                     $bdd->eliminartasques($_POST["id"]);
                 } else {
                     header('HTTP/1.1 405 Mètode no disponible');
                 }
             }
-            if ($accio == 'editarusuari') {
+            else if ($accio == 'editarusuari') {
                 if ($method == "POST") {
                     $bdd->editarusuari($_POST["id"], $_POST["nom"], $_POST["email"], $_POST["rol"], $_POST["contrasenya"]);
                 } else {
                     header('HTTP/1.1 405 Mètode no disponible');
                 }
             }
-            if ($accio == 'usuari') {
+            else if ($accio == 'usuari') {
                 if ($method == "GET") {
                     $bdd->llistarusuaris();
                 } else {
                     header('HTTP/1.1 405 Mètode no disponible');
                 }
             }
-            if ($accio == 'crearusuari') {
+            else if ($accio == 'crearusuari') {
                 if ($method == "POST") {
                     $bdd->crearusuari($_POST["nom"], $_POST["email"], $_POST["rol"], $_POST["contrasenya"]);
                 } else {
@@ -128,6 +112,19 @@ class Server
             }
 
         }
+    }        
+    function generateToken()
+    {
+        $cookieToken = bin2hex(random_bytes(24));
+        setcookie("token", $cookieToken, time() + (3600), "/");
+        return $cookieToken;
+    }
+    function generateToken2()
+    {
+        $cookieToken = bin2hex(random_bytes(24));
+        setcookie("token", $cookieToken, time() + (0), "/");
+        setcookie("token2", $cookieToken, time() + (3600), "/");
+        return $cookieToken;
     }
 }
 $server = new Server;
