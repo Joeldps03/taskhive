@@ -4,8 +4,23 @@ class Server
 {
     public function serve()
     {
+        //funció per a generar token
+        function generateToken()
+        {
+            //la coockie durarà una hora
+            setcookie("token", bin2hex(random_bytes(24)), time() + (3600), "/");
+            return $_COOKIE["token"];
+        }
+        function generateToken2()
+        {
+            //borrem token vell
+            setcookie("token", bin2hex(random_bytes(24)), time() + 0, "/");
+            //la coockie durarà una hora
+            setcookie("token", bin2hex(random_bytes(24)), time() + 3600, "/");
+            return $_COOKIE["token"];
+        }
         //mirem si tenim la cookie del token generada, en cas contrari generem el token
-        if (!$_COOKIE["token"]) {
+        if (!isset($_COOKIE["token"])) {
             //generem el valor del tocken
             $token = generateToken();
             //creem la connecció i inserim el token generat a la base de dades dels tokens
@@ -116,21 +131,6 @@ class Server
                 header('HTTP/1.1 404');
             }
 
-            //funció per a generar token
-            function generateToken()
-            {
-                //la coockie durarà una hora
-                setcookie("token", bin2hex(random_bytes(24)), time() + (3600), "/");
-                return $_COOKIE["token"];
-            }
-            function generateToken2()
-            {
-                //borrem token vell
-                setcookie("token", bin2hex(random_bytes(24)), time() + 0, "/");
-                //la coockie durarà una hora
-                setcookie("token", bin2hex(random_bytes(24)), time() + 3600, "/");
-                return $_COOKIE["token"];
-            }
         }
     }
 }
