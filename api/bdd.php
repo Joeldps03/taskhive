@@ -50,6 +50,18 @@ class bdd
             return false;
     }
 
+    //funció per a retornar la id de un usuari a partir del nom
+    public static function get_id($nom)
+    {
+        $SQL = "SELECT * FROM usuaris WHERE nom = :nom";
+        $consulta = (BdD::$connection)->prepare($SQL);
+        $consulta->bindParam(':nom',$nom);
+        $qFiles = $consulta->execute(); 
+        $result = $consulta->fetch();
+        return $result["id"];
+    }
+
+
     //Funció per a llsitar les tàsques del tèctic
     public static function llistarTasquesUser($id_usuari)
     {
@@ -340,7 +352,7 @@ class bdd
             return false;
     }
 
-    //Mirar si el token és existent
+    //Mirar si el token és existent i retorna tot el usuari
     public static function existeixtokenusuaris($token)
     {
         $result=null;
@@ -349,12 +361,10 @@ class bdd
         $consulta = (BdD::$connection)->prepare($SQL);
         $consulta->bindParam(':token',$token);
         $qFiles = $consulta->execute(); 
-        var_dump( $consulta->rowCount());
-        $result = $consulta->fetchAll();
+        $result = $consulta->fetch();
+        print_r($result);
         if ($consulta->rowCount() > 0){
-            foreach($result as $tasca){
-                $resposta[]=$tasca;
-            }
+            return $result;
         }
     }
 }
