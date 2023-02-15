@@ -23,7 +23,7 @@ class Server
             array_shift($paths);
             $clau = array_shift($paths);
             $resource = array_shift($paths);
-            $accio = array_shift($path);
+            $accio = array_shift($paths);
             //instanciem un objecte bdd per poder accedir-hi
             //al instanciar el mètode s'estableix connecció a la base de dades
             $bdd = new bdd();
