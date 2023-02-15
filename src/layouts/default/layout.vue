@@ -116,16 +116,16 @@ export default {
     },
   },
 
-  mounted() {
-  axios.get('')
-    .then(response => {
-      this.isAdmin = response.data.isAdmin;
-    })
-    .catch(error => {
-      console.error(error);
-    });
-}
-,
+//   mounted() {
+//   axios.get('')
+//     .then(response => {
+//       this.isAdmin = response.data.isAdmin;
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+// }
+// ,
 
   watch: {
     group() {

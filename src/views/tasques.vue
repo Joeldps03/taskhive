@@ -19,10 +19,10 @@
             </thead>
             <tbody>
               <tr v-for="item in desserts" :key="item.id">
-                <td>{{ item.tasques }}</td>
-                <td>{{ item.prioritat }}</td>
-                <td>{{ item.estats }}</td>
-                <td>{{ item.usuariAsignat }}</td>
+                <td>{{ item.tasca }}</td>
+                <td>{{  }}</td>
+                <td>{{  }}</td>
+                <td>{{  }}</td>
                 <div class="buttonEditar">
                   
                   <v-btn 
@@ -61,18 +61,18 @@ export default {
     redirectEditarTasques(id) {
       this.$router.push("tasquesEditar/" + id);
     },
-    fetchTasques() { // función que realiza la petición a la API
-      axios.get("localhost/taskhive/api/tasques")
+    fetchTasques() { 
+      axios.get("http://localhost/taskhive/api/tasques")
         .then(response => {
           this.desserts = response.data;
-          console.log(response.data); // aquí guardamos los datos de las tareas en la variable desserts
+          console.log(this.desserts);
         })
         .catch(error => {
           console.log(error);
         });
     },
-    mounted() { // este hook se ejecuta cuando el componente es montado
-    this.fetchTasques(); // llamamos a la función fetchTasques para obtener los datos de la API
+    mounted() { 
+    this.fetchTasques(); 
   }
   }
 

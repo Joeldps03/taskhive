@@ -4,18 +4,18 @@ class Server
 {
     public function serve()
     {
-        //funció per a generar token
-        //mirem si tenim la cookie del token generada, en cas contrari generem el token
-        if (!isset($_COOKIE["token"])) {
-            //generem el valor del tocken
-            $token = $this->generateToken();
-            //creem la connecció i inserim el token generat a la base de dades dels tokens
-            $bdd = new bdd();
-            $bdd->inserirtokentokens($token);
-            //una vegada generada la cookie hauriem de recarregar la pàgina
-        }
+        // funció per a generar token
+        // mirem si tenim la cookie del token generada, en cas contrari generem el token
+        // if (!isset($_COOKIE["token"])) {
+        //     //generem el valor del tocken
+        //     $token = $this->generateToken();
+        //     //creem la connecció i inserim el token generat a la base de dades dels tokens
+        //     $bdd = new bdd();
+        //     $bdd->inserirtokentokens($token);
+        //     //una vegada generada la cookie hauriem de recarregar la pàgina
+        // }
         //en cas afirmatiu carreguem tota la pàgina
-        else {
+        // else {
             $uri = $_SERVER['REQUEST_URI'];
             $method = $_SERVER['REQUEST_METHOD'];
             $paths = explode('/', $uri);
@@ -24,6 +24,7 @@ class Server
             $clau = array_shift($paths);
             $resource = array_shift($paths);
             $accio = array_shift($paths);
+            var_dump($accio);
             //instanciem un objecte bdd per poder accedir-hi
             //al instanciar el mètode s'estableix connecció a la base de dades
             $bdd = new bdd();
@@ -47,17 +48,19 @@ class Server
                     header('HTTP/1.1 404 usuari no trobat');
             }
             else if ($accio == 'tasques') {
-                if ($method == "POST") {
+                // if ($method == "POST") {
                     //Controlem el tipus d'usuari
                     if ($_POST["rol"] == "tecnic") {
                         $bdd->llistarTasquesUser($_POST["id_usuari"]);
                     } else {
                         //si no és tècnic mostrem totes les tasques
-                        $bdd->llistarTasques();
+                        $llistar = $bdd->llistarTasques();
+
+                        echo json_encode($llistar);
                     }
-                } else {
-                    header('HTTP/1.1 405 Mètode no disponible');
-                }
+                // } else {
+                //     header('HTTP/1.1 405 Mètode no disponible');
+                // }
             }
             else if ($accio == 'editartasques') {
                 if ($method == "POST") {
@@ -125,8 +128,8 @@ class Server
         setcookie("token", $cookieToken, time() + (0), "/");
         setcookie("token2", $cookieToken, time() + (3600), "/");
         return $cookieToken;
-    }
-}
+ }
+// }
 $server = new Server;
 $server->serve();
 
