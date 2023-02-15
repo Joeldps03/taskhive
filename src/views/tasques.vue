@@ -44,6 +44,7 @@
 
 <script>
 import layout from "@/layouts/default/layout.vue";
+import axios from 'axios';
 
 export default {
   components: { layout},
@@ -52,28 +53,27 @@ export default {
     return {
       expanded: [],
       singleExpand: false,
-      desserts: [
-        {
-          id: 1,
-          tasques: "Montar ordinador",
-          prioritat: 9,
-          estats: "Pendent",
-          usuariAsignat: "Joel De Palol Sanjuan",
-        },
-        {
-          id: 2,
-          tasques: "Canviar CPU",
-          prioritat: 5,
-          estats: "Pendent",
-          usuariAsignat: "Arnau Soler Serra",
-        },
-      ],
+      desserts: [],
+      
     };
   },
   methods: {
     redirectEditarTasques(id) {
       this.$router.push("tasquesEditar/" + id);
     },
+    fetchTasques() { // función que realiza la petición a la API
+      axios.get("localhost/taskhive/api/tasques")
+        .then(response => {
+          this.desserts = response.data;
+          console.log(response.data); // aquí guardamos los datos de las tareas en la variable desserts
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    mounted() { // este hook se ejecuta cuando el componente es montado
+    this.fetchTasques(); // llamamos a la función fetchTasques para obtener los datos de la API
+  }
   }
 
 };

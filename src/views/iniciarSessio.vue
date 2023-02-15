@@ -4,6 +4,7 @@
       <v-col cols="20">
         <v-text-field
           v-model="email"
+          id="email"
           :readonly="loading"
           clearable
           :rules="[rules.required, rules.email]"
@@ -19,6 +20,7 @@
         <v-text-field
           v-model="password"
           :readonly="loading"
+          id="password"
           clearable
           :append-icon="mostrar ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.required, rules.min]"
@@ -49,12 +51,14 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
       mostrar: true,
       rules: {
-        rules: (value) => !!value || "Obligatori.",
+        required: (value) => !!value || "Obligatori.",
         min: (v) => v.length >= 8 || "Mínim 8 caràcters.",
         comprovarContrasenya: () =>
           `El correu electrònic i la contrasenya que heu introduït no coincideixen.`,
@@ -70,7 +74,21 @@ export default {
     };
   },
   methods: {
-    onSubmit() {    },
+    onSubmit() { 
+      axios.post("http://localhost/taskhive/api/login",{
+        email: this.email,
+        password: this.password
+      })
+        //pillem el valor de l'api i ho introduim dintre de resposta
+      .then(resultat => {
+        // si la respuesta es satisfactoria, redirigimos a la página de inicio
+        this.$router.push("/tasques");
+      })
+      .catch(error => {
+        // si hay un error, mostramos un mensaje de error
+        this.message = 'Credencials invàlides, si us plau intenteu de nou.';
+      });
+    },  
   },
 };
 </script>

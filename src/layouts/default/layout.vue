@@ -6,7 +6,8 @@
         style="width: 50px; height: 50px"
       />
     </v-col>
-    <div class="buscador">
+    
+    <div class="buscador" v-if="userRole === 'admin'">
       <v-text-field
         :loading="loading"
         density="compact"
@@ -15,6 +16,7 @@
         append-inner-icon="mdi-magnify"
         single-line
         hide-details
+      
         @click:append-inner="onClick"
       ></v-text-field>
     </div>
@@ -29,17 +31,18 @@
     rail
   >
     <v-list dense nav>
+    <div v-if="userRole === 'admin'">
+        <v-list-item
+          prepend-icon="mdi-file-document"
+          title="Tasques"
+          @click="redirectTasques()"
+          active-color="blue"
+          rounded="xl"
+          color="blue"
+        >
+        </v-list-item>
       
-      <v-list-item
-        prepend-icon="mdi-file-document"
-        title="Tasques"
-        @click="redirectTasques()"
-        active-color="blue"
-        rounded="xl"
-        color="blue"
-      >
-      </v-list-item>
-
+      
       <v-list-item
         prepend-icon="mdi-file-document-plus"
         title="Crear Tasques"
@@ -71,6 +74,7 @@
         active-color="blue"
         rounded="xl"
       ></v-list-item>
+    </div>
     </v-list>
   </v-navigation-drawer>
 
@@ -82,11 +86,12 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "layout",
   data() {
     return {
-      search: "",
+      userRole: "admin"
     };
   },
   methods: {
@@ -110,6 +115,17 @@ export default {
       this.$router.push("/iniciarSessio");
     },
   },
+
+  mounted() {
+  axios.get('')
+    .then(response => {
+      this.isAdmin = response.data.isAdmin;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+,
 
   watch: {
     group() {

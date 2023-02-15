@@ -44,6 +44,7 @@
 
 <script>
 import layout from "@/layouts/default/layout.vue";
+import axios from 'axios';
 
 export default {
   components: { layout },
@@ -52,28 +53,23 @@ export default {
     return {
       expanded: [],
       singleExpand: false,
-      desserts: [
-        {
-          id: 1,
-          correu: "joeldepalol@gmail.com",
-          nom: "Joel De Palol Sanjuan",
-          contrasenya: "daw1234",
-          rol: "admin",
-        },
-        {
-          id: 2,
-          correu: "arnausoler@gmail.com",
-          nom: "Arnau Soler Serra",
-          contrasenya: "daw4321",
-          rol: "admin",
-        },
-      ],
+      desserts: [] 
+      
     };
   },
   methods: {
     redirectEditarUsuaris(id) {
       this.$router.push("usuarisEditar/" + id);
     },
+    fetchDesserts() {
+      axios.get("http://localhost/taskhive/api/usuarios")
+        .then(response => {
+          this.desserts = response.data; 
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
   }
 
 

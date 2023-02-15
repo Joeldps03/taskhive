@@ -79,11 +79,53 @@
 </template>
 <script>
 import layout from "@/layouts/default/layout.vue";
+import axios from 'axios';
 
 export default {
   components: { layout },
   name: "crearTasques",
+  data() {
+    return {
+      tasca: '',
+      estat: '',
+      prioritat: '',
+      usuariAsignat: '',
+      descripcio: '',
+      comentari: '',
+      loading: false,
+      rules: [
+        v => !!v || 'Camp requerit'
+      ]
+    }
+  },
+  methods: {
+    crearTasca() {
+      this.loading = true;
+      axios({
+        method: 'post',
+        url: 'http://localhost:3000/crear-tasca',
+        data: {
+          tasca: this.tasca,
+          estat: this.estat,
+          prioritat: this.prioritat,
+          usuariAsignat: this.usuariAsignat,
+          descripcio: this.descripcio,
+          comentari: this.comentari
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        this.loading = false;
+      })
+      .catch((error) => {
+        console.log(error);
+        this.loading = false;
+      });
+    }
+  }
+
 }
+
 </script>
 
 <style src="@/styles/settings.scss">
