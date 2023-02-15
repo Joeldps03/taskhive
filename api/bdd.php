@@ -42,7 +42,9 @@ class bdd
         $consulta = (BdD::$connection)->prepare($SQL);
         $consulta->bindParam(':email',$email);
         $qFiles = $consulta->execute(); 
-        var_dump( $consulta->rowCount());
+        //generem token a la taula usuaris
+        $bdd=new bdd;
+        $bdd -> inserirtoken_users($email);
         //Retornem un boleà 
         if ($consulta->rowCount() > 0)
             return true;
@@ -283,8 +285,9 @@ class bdd
     }
 
     //Funció per a incerir token a la taula dels usuaris
-    public static function inserirtokenusers($id,$token)
+    public static function inserirtoken_users($email)
     {
+        $token=$email+bin2hex(random_bytes(5));
         try {
             //Fem un update ja que sempre actualutzarà el valor, tant si és null com si no
             $SQL = "UPDATE usuaris SET token=:token WHERE id = :id";
@@ -302,15 +305,17 @@ class bdd
     }
 
     //Fem insert de token a la taula de tokens
-    public static function inserirtokentokens($token)
+    public static function inserirtoken_tokens()
     {
         try {
+            $token = bin2hex(random_bytes(24));
             //consulta d'inserció a la taula tokens
             $SQL = "INSERT INTO tokens (token) VALUES (:token)";
             $consulta = (BdD::$connection)->prepare($SQL);
             $consulta->bindParam("token", $token);
             try {
                 $result = $consulta->execute();
+                return $token;
             } catch (PDOException $e) {
                 echo "Errada en la inserció: " . $e->getMessage();
             }
