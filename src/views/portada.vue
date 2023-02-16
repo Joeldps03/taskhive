@@ -19,7 +19,7 @@ export default {
     },
     generarTokenConvidat() {
       //generem token convidats
-      axios.get("http://localhost/taskhive/api")
+      axios.get("http://localhost/api/")
         //pillem el valor de l'api i ho introduim dintre de resposta
         .then(resultat => {
           this.tokenJSON = resultat.data;
@@ -30,7 +30,6 @@ export default {
     }
   },
   mounted() {
-    console.log (" jjj");
     this.generarTokenConvidat();
     setTimeout(() => {
       this.redirect();

@@ -4,9 +4,6 @@ class Server
 {
     public function serve()
     {
-        echo "U";
-        exit;
-
         $bdd = new bdd();
         echo(json_encode($bdd->inserirtoken_tokens()));
         $uri = $_SERVER['REQUEST_URI'];
