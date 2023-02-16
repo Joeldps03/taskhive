@@ -24,7 +24,6 @@ export default {
         .then(resultat => {
           this.tokenJSON = resultat.data;
           sessionStorage.setItem("tokenconvidat", resultat.data)
-          console.log("TOKEN "+ resultat.data);
         }
         );
     }

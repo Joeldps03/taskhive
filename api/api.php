@@ -5,15 +5,20 @@ class Server
     public function serve()
     {
         $bdd = new bdd();
+        var_dump("joakok");
+        exit();
         echo(json_encode($bdd->inserirtoken_tokens()));
         $uri = $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
         $paths = explode('/', $uri);
         array_shift($paths); // Hack; get rid of initials empty string
-        array_shift($paths);
+        // array_shift($paths);
         $clau = array_shift($paths);
         $resource = array_shift($paths);
         $accio = array_shift($paths);
+
+        var_dump($accio);
+        exit();
         //instanciem un objecte bdd per poder accedir-hi
         //al instanciar el mètode s'estableix connecció a la base de dades
 

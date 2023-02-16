@@ -75,7 +75,7 @@ export default {
   },
   methods: {
     onSubmit() { 
-      axios.post("http://localhost/taskhive/api/login",{
+      axios.get("http://localhost/api/login/",{
         email: this.email,
         password: this.password
       })
