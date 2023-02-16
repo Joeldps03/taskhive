@@ -1,8 +1,8 @@
 Header set Access-Control-Allow-Origin '*'
 Header set Access-Control-Allow-Methods 'GET, PUT, POST, DELETE, OPTIONS,'
-Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+Header set Access-Control-Allow-Headers "*"
 RewriteEngine On
-RewriteBase /taskhive/api
+RewriteBase /api
 options +FollowSymLinks
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule .* api.php/$0 [L]

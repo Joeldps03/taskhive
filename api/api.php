@@ -1,11 +1,15 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header('Access-Control-Allow-Methods: *');
 include './bdd.php';
 class Server
 {
     public function serve()
     {
         echo "U";
-        exit;
+        header('HTTP/1.1 200 OK');
+        exit();
 
         $bdd = new bdd();
         echo(json_encode($bdd->inserirtoken_tokens()));
