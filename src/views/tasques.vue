@@ -19,10 +19,10 @@
             </thead>
             <tbody>
               <tr v-for="item in desserts" :key="item.id">
-                <td>{{ item.tasques }}</td>
+                <td>{{ item.nom }}</td>
                 <td>{{ item.prioritat }}</td>
-                <td>{{ item.estats }}</td>
-                <td>{{ item.usuariAsignat }}</td>
+                <td>{{ item.estat }}</td>
+                <td>{{ item.id_usuari }}</td>
                 <div class="buttonEditar">
                   
                   <v-btn 
@@ -54,6 +54,9 @@ export default {
       expanded: [],
       singleExpand: false,
       desserts: [],
+      rol: sessionStorage.rol,
+      id: sessionStorage.id,
+      token: sessionStorage.tokenconvidat
       
     };
   },
@@ -61,18 +64,34 @@ export default {
     redirectEditarTasques(id) {
       this.$router.push("tasquesEditar/" + id);
     },
-    fetchTasques() { // función que realiza la petición a la API
-      axios.get("localhost/taskhive/api/tasques")
+    fetchTasques() { 
+      axios.post("http://localhost/api/tasques/", {
+        id: this.id,
+        rol: this.rol,
+        token: this.token
+      })
         .then(response => {
           this.desserts = response.data;
-          console.log(response.data); // aquí guardamos los datos de las tareas en la variable desserts
         })
         .catch(error => {
           console.log(error);
         });
     },
     mounted() { // este hook se ejecuta cuando el componente es montado
-    this.fetchTasques(); // llamamos a la función fetchTasques para obtener los datos de la API
+    axios.post("http://localhost/api", {
+        token: this.token
+      })
+      .then(resultat => {
+        // pillem amb el session storage els valors de la id i el rol
+        //Així els tenim a mà en tot el codi
+        sessionStorage.setItem("id", resultat.data.id);
+        sessionStorage.setItem("rol", resultat.data.rol);
+
+      })
+      .catch(error => {
+        console.log(error);
+      }); 
+    this.fetchTasques();
   }
   }
 

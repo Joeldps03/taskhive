@@ -3,8 +3,7 @@
     <v-form v-model="form" @submit.prevent="onSubmit" class="divCentre">
       <v-col cols="20">
         <v-text-field
-          v-model="email"
-          id="email"
+          v-model="correu"
           :readonly="loading"
           clearable
           :rules="[rules.required, rules.email]"
@@ -18,9 +17,8 @@
         <br />
 
         <v-text-field
-          v-model="password"
+          v-model="contrasenya"
           :readonly="loading"
-          id="password"
           clearable
           :append-icon="mostrar ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[rules.required, rules.min]"
@@ -53,6 +51,7 @@
 <script>
 import axios from 'axios';
 
+
 export default {
   data() {
     return {
@@ -68,26 +67,33 @@ export default {
           return pattern.test(value) || "Correu invalid.";
         },
       },
-      email: null,
-      password: null,
+      from: false,
+      correu: null,
+      contrasenya: null,
       loading: false,
+      message: "",
+      token: sessionStorage.tokenconvidat
     };
   },
   methods: {
     onSubmit() { 
-      axios.get("http://localhost/api/login/",{
-        email: this.email,
-        password: this.password
+      // if(!(this.correu=="" && this.contrasenya=="")){
+      axios.post("http://localhost/api/login/",{
+        correu: this.correu,
+        contrasenya: this.contrasenya,
+        token: this.token
       })
         //pillem el valor de l'api i ho introduim dintre de resposta
       .then(resultat => {
-        // si la respuesta es satisfactoria, redirigimos a la página de inicio
-        this.$router.push("/tasques");
+        if(resultat.data){
+          this.$router.push("/tasques");
+        }        
       })
       .catch(error => {
         // si hay un error, mostramos un mensaje de error
         this.message = 'Credencials invàlides, si us plau intenteu de nou.';
       });
+      // }
     },  
   },
 };

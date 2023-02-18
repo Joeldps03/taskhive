@@ -36,13 +36,14 @@ class bdd
     }
 
     //Comprobem que l'usuari està registrat
-    public static function login($email)
+    public static function login($email, $contrasenya)
     {
-        $SQL = "SELECT * FROM usuaris WHERE email = :email";
+        $SQL = "SELECT * FROM usuaris WHERE email = :email AND contrasenya = :contrasenya";
         $consulta = (BdD::$connection)->prepare($SQL);
         $consulta->bindParam(':email',$email);
+        $consulta->bindParam(':contrasenya',$contrasenya);
         $qFiles = $consulta->execute(); 
-        //generem token a la taula usuaris
+        // generem token a la taula usuaris
         $bdd=new bdd;
         $bdd -> inserirtoken_users($email);
         //Retornem un boleà 
@@ -287,13 +288,14 @@ class bdd
     //Funció per a incerir token a la taula dels usuaris
     public static function inserirtoken_users($email)
     {
-        $token=$email+bin2hex(random_bytes(5));
+        $token=bin2hex(random_bytes(9));
+        $token=$email.$token;
         try {
             //Fem un update ja que sempre actualutzarà el valor, tant si és null com si no
-            $SQL = "UPDATE usuaris SET token=:token WHERE id = :id";
+            $SQL = "UPDATE usuaris SET token=:token WHERE email = :email";
             $consulta = (BdD::$connection)->prepare($SQL);
             $consulta->bindParam("token", $token);
-            $consulta->bindParam("id", $id);
+            $consulta->bindParam("email", $email);
             try {
                 $result = $consulta->execute();
             } catch (PDOException $e) {
@@ -308,7 +310,7 @@ class bdd
     public static function inserirtoken_tokens()
     {
         try {
-            $token = bin2hex(random_bytes(24));
+            $token = bin2hex(random_bytes(20));
             //consulta d'inserció a la taula tokens
             $SQL = "INSERT INTO tokens (token) VALUES (:token)";
             $consulta = (BdD::$connection)->prepare($SQL);
@@ -367,9 +369,10 @@ class bdd
         $consulta->bindParam(':token',$token);
         $qFiles = $consulta->execute(); 
         $result = $consulta->fetch();
-        print_r($result);
         if ($consulta->rowCount() > 0){
             return $result;
         }
+        else 
+            return false;
     }
 }
