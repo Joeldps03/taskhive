@@ -12,7 +12,7 @@ class Server
         //mirem si lki estem passant un token
         if($data!= null){
             $token=$data->token;
-            $id=$data->id;
+            // $id=$data->id;
         }
         $uri = $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
@@ -27,9 +27,9 @@ class Server
             echo(json_encode($bdd->inserirtoken_tokens()));
         }
         //si tenim token mirem usuari connectat
-        else if ($id==null){
-            echo(json_encode($bdd->existeixtokenusuaris($token)));
-        }
+        // else if ($id==null){
+        //     echo(json_encode($bdd->existeixtokenusuaris($token)));
+        // }
         else if($token!= null){
             // echo $bdd->existeixtokentokens($token);
             if($bdd->existeixtokentokens($token) || $bdd->existeixtokenusuaris($token)){
@@ -99,8 +99,7 @@ class Server
                         header('HTTP/1.1 405 Mètode no disponible');
                     }
                 } else {
-                    // només validem /contrasenya/validar
-                    header('HTTP/1.1 404');
+                    header('HTTP/1.1 404 metode no trobat');
                 }
             }
             else{
