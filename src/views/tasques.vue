@@ -72,7 +72,8 @@ export default {
       .then(resultat => {
         // pillem amb el session storage els valors de la id i el rol
         //Així els tenim a mà en tot el codi
-        console.log(resultat);
+      
+        this.desserts = resultat.data.tasques;
         sessionStorage.setItem("id", resultat.data.usuari.id);
         sessionStorage.setItem("rol", resultat.data.usuari.rol);
 
