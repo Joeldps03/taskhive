@@ -86,6 +86,8 @@ export default {
         //pillem el valor de l'api i ho introduim dintre de resposta
       .then(resultat => {
         if(resultat.data){
+          
+          sessionStorage.setItem("tokenusuari", resultat.data.token)
           this.$router.push("/tasques");
         }        
       })

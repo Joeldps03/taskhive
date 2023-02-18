@@ -117,13 +117,13 @@ export default {
   },
 
   mounted() {
-  axios.get('')
-    .then(response => {
-      this.isAdmin = response.data.isAdmin;
-    })
-    .catch(error => {
-      console.error(error);
-    });
+  // axios.get('')
+  //   .then(response => {
+  //     this.isAdmin = response.data.isAdmin;
+  //   })
+  //   .catch(error => {
+  //     console.error(error);
+  //   });
 }
 ,
 

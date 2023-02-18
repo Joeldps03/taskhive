@@ -45,7 +45,7 @@
 <script>
 import layout from "@/layouts/default/layout.vue";
 import axios from 'axios';
-
+console.log("entra2");
 export default {
   components: { layout},
   name: "tasques",
@@ -54,45 +54,32 @@ export default {
       expanded: [],
       singleExpand: false,
       desserts: [],
-      rol: sessionStorage.rol,
-      id: sessionStorage.id,
-      token: sessionStorage.tokenconvidat
+      rol: null,
+      id: null,
+      token: sessionStorage.tokenusuari
       
     };
   },
   methods: {
     redirectEditarTasques(id) {
       this.$router.push("tasquesEditar/" + id);
-    },
-    fetchTasques() { 
-      axios.post("http://localhost/api/tasques/", {
-        id: this.id,
-        rol: this.rol,
-        token: this.token
-      })
-        .then(response => {
-          this.desserts = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
-    mounted() { // este hook se ejecuta cuando el componente es montado
-    axios.post("http://localhost/api", {
+    }
+  },
+  mounted() { // este hook se ejecuta cuando el componente es montado
+    axios.post("http://localhost/api/tasques/", {
         token: this.token
       })
       .then(resultat => {
         // pillem amb el session storage els valors de la id i el rol
         //Així els tenim a mà en tot el codi
-        sessionStorage.setItem("id", resultat.data.id);
-        sessionStorage.setItem("rol", resultat.data.rol);
+        console.log(resultat);
+        sessionStorage.setItem("id", resultat.data.usuari.id);
+        sessionStorage.setItem("rol", resultat.data.usuari.rol);
 
       })
       .catch(error => {
         console.log(error);
-      }); 
-    this.fetchTasques();
-  }
+      });
   }
 
 };

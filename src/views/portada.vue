@@ -32,7 +32,7 @@ export default {
     this.generarTokenConvidat();
     setTimeout(() => {
       this.redirect();
-    }, 3000);
+    }, 1000);
   },
 };
 </script>

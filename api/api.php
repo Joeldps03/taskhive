@@ -12,7 +12,9 @@ class Server
         //mirem si lki estem passant un token
         if($data!= null){
             $token=$data->token;
-            // $id=$data->id;
+            // if ($data->id != null){
+            //     $id=$data->id;
+            // }
         }
         $uri = $_SERVER['REQUEST_URI'];
         $method = $_SERVER['REQUEST_METHOD'];
@@ -24,32 +26,35 @@ class Server
 
         //mirem si tenim token
         if ($token==null){
-            echo(json_encode($bdd->inserirtoken_tokens()));
+           echo(json_encode($bdd->inserirtoken_tokens()));
         }
-        //si tenim token mirem usuari connectat
-        // else if ($id==null){
-        //     echo(json_encode($bdd->existeixtokenusuaris($token)));
-        // }
         else if($token!= null){
-            // echo $bdd->existeixtokentokens($token);
-            if($bdd->existeixtokentokens($token) || $bdd->existeixtokenusuaris($token)){
+           if($bdd->existeixtokentokens($token) || $bdd->existeixtokenusuarisbool($token)){
                 if ($accio == 'login') {
                     //Mirem si existeix el usuari
-                    if ($bdd->login($data->correu,$data->contrasenya)) {
-                        header('HTTP/1.1 200 LOGIN');
-                    } else
-                        header('HTTP/1.1 404 usuari no trobat');
+                    // if ($bdd->login($data->correu,$data->contrasenya)) {
+
+                        $token1=$bdd->login($data->correu,$data->contrasenya);
+                        $pasar=array("token"=>$token1);
+                        if($token1)
+                            echo json_encode($pasar);
+                    // } else
+                    //     header('HTTP/1.1 404 usuari no trobat');
                 }
                 else if ($accio == 'tasques') {
                     //Controlem el tipus d'usuari
-                    if ($data->rol == "tecnic") {
+                    $usuari=$bdd->existeixtokenusuaris($token);
+                    $llistartasques=null;
+                    if ($usuari["rol"] == "tecnic") {
                         header('HTTP/1.1 202 Gorl Tecnic');
-                        // $bdd->llistarTasquesUser($_POST["id_usuari"]);
+                        $llistartasques=$bdd->llistarTasquesUser($usuari["id"]);
+
                     } else {
+                        $llistartasques=$bdd->llistarTasques();
                         header('HTTP/1.1 202 Goel Gestor');
-                        //si no és tècnic mostrem totes les tasques
-                        // $bdd->llistarTasques();
                     }
+                    $pasar=array("usuari"=>$usuari,"tasques"=>$llistartasques);
+                    echo json_encode($pasar);
                 }
                 else if ($accio == 'editartasques') {
                     if ($method == "POST") {

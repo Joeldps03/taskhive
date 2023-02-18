@@ -45,10 +45,10 @@ class bdd
         $qFiles = $consulta->execute(); 
         // generem token a la taula usuaris
         $bdd=new bdd;
-        $bdd -> inserirtoken_users($email);
+        $token=$bdd -> inserirtoken_users($email);
         //Retornem un boleà 
         if ($consulta->rowCount() > 0)
-            return true;
+            return $token;
         else
             return false;
     }
@@ -298,6 +298,7 @@ class bdd
             $consulta->bindParam("email", $email);
             try {
                 $result = $consulta->execute();
+                return $token;
             } catch (PDOException $e) {
                 echo "Errada en la inserció: " . $e->getMessage();
             }
@@ -352,7 +353,7 @@ class bdd
         $consulta = (BdD::$connection)->prepare($SQL);
         $consulta->bindParam(':token',$token);
         $qFiles = $consulta->execute(); 
-        var_dump( $consulta->rowCount());
+        ( $consulta->rowCount());
         if ($consulta->rowCount() > 0)
             return true;
         else
@@ -368,9 +369,26 @@ class bdd
         $consulta = (BdD::$connection)->prepare($SQL);
         $consulta->bindParam(':token',$token);
         $qFiles = $consulta->execute(); 
+        $consulta->setFetchMode(PDO::FETCH_ASSOC);
         $result = $consulta->fetch();
         if ($consulta->rowCount() > 0){
             return $result;
+        }
+        else 
+            return false;
+    }
+
+    public static function existeixtokenusuarisbool($token)
+    {
+        $result=null;
+        //Consulta per mirar si el token existeix
+        $SQL = "SELECT * FROM usuaris WHERE token = :token";
+        $consulta = (BdD::$connection)->prepare($SQL);
+        $consulta->bindParam(':token',$token);
+        $qFiles = $consulta->execute(); 
+        $result = $consulta->fetch();
+        if ($consulta->rowCount() > 0){
+            return true;
         }
         else 
             return false;
