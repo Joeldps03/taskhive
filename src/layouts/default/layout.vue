@@ -7,7 +7,7 @@
       />
     </v-col>
     
-    <div class="buscador" v-if="userRole === 'admin'">
+    <div class="buscador">
       <v-text-field
         :loading="loading"
         density="compact"
@@ -75,6 +75,58 @@
         rounded="xl"
       ></v-list-item>
     </div>
+
+    <div v-if="userRole === 'tecnic'">
+        <v-list-item
+          prepend-icon="mdi-file-document"
+          title="Tasques"
+          @click="redirectTasques()"
+          active-color="blue"
+          rounded="xl"
+          color="blue"
+        >
+        </v-list-item>
+        <v-list-item
+        prepend-icon="mdi-logout"
+        title="Tencar Sessió"
+        @click="tencarSessio()"
+        active-color="blue"
+        rounded="xl"
+      ></v-list-item>
+    </div>
+
+    <div v-if="userRole === 'gestor'">
+      
+      <v-list-item
+          prepend-icon="mdi-file-document"
+          title="Tasques"
+          @click="redirectTasques()"
+          active-color="blue"
+          rounded="xl"
+          color="blue"
+        >
+        </v-list-item>
+      
+      
+      <v-list-item
+        prepend-icon="mdi-file-document-plus"
+        title="Crear Tasques"
+        @click="redirectCrearTasques()"
+        active-color="blue"
+        rounded="xl"
+      ></v-list-item>
+      <v-list-item
+        prepend-icon="mdi-logout"
+        title="Tencar Sessió"
+        @click="tencarSessio()"
+        active-color="blue"
+        rounded="xl"
+      ></v-list-item>
+
+    </div>
+
+
+
     </v-list>
   </v-navigation-drawer>
 
@@ -86,12 +138,11 @@
 </template>
 
 <script>
-import axios from 'axios';
 export default {
   name: "layout",
   data() {
     return {
-      userRole: "admin"
+      userRole: sessionStorage.rol
     };
   },
   methods: {
@@ -115,17 +166,11 @@ export default {
       this.$router.push("/iniciarSessio");
     },
   },
-
   mounted() {
-  // axios.get('')
-  //   .then(response => {
-  //     this.isAdmin = response.data.isAdmin;
-  //   })
-  //   .catch(error => {
-  //     console.error(error);
-  //   });
-}
-,
+    setTimeout(() => {
+      location.reload();
+    }, 1);
+  },
 
   watch: {
     group() {
