@@ -72,7 +72,7 @@ class bdd
         {
             $resposta=null;
             //select de les tàsques ordenades per prioritat
-            $SQL = "SELECT * FROM tasques WHERE id_usuari = :id_usuari ORDER BY prioritat";
+            $SQL = "SELECT * FROM tasques WHERE id_usuari = :id_usuari ORDER BY prioritat DESC";
             $consulta = (BdD::$connection)->prepare($SQL);
             //passant el id del usuari aconseguim mostrar només les taques assignades a aquell usuari
             $consulta->bindParam("id_usuari", $id_usuari);
@@ -99,7 +99,7 @@ class bdd
         {
             $resposta=null;
             //Aqui veurem totes les entrades a la taula de tasques
-            $SQL = "SELECT * FROM tasques ORDER BY prioritat";
+            $SQL = "SELECT * FROM tasques ORDER BY prioritat DESC";
             $consulta = (BdD::$connection)->prepare($SQL);
             $consulta->setFetchMode(PDO::FETCH_ASSOC);
             $qFiles = $consulta->execute(); 
