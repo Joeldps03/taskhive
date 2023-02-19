@@ -79,14 +79,16 @@ export default {
   },
   methods: {
     crearUsuari() {
-  axios.post('http://ejemplo.com/api/crear_usuari', {
-    nom: this.nom,
-    correu: this.correu,
-    contrasenya: this.contrasenya,
-    rol: this.rol,
+      axios.post("http://localhost/api/crearusuari/", {
+      token: sessionStorage.tokenusuari,
+      nom: this.nom,
+      correu: this.correu,
+      contrasenya: this.contrasenya,
+      rol: this.rol,
   })
     .then(response => {
-      console.log(response.data); // hacer algo con la respuesta de la API
+      console.log("INSERT"); // hacer algo con la respuesta de la API
+      this.$router.push("/usuaris");
     })
     .catch(error => {
       console.error(error); // manejar el error de la solicitud

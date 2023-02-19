@@ -96,7 +96,7 @@ class Server
                 }
                 else if ($accio == 'crearusuari') {
                     if ($method == "POST") {
-                        $bdd->crearusuari($_POST["nom"], $_POST["email"], $_POST["rol"], $_POST["contrasenya"]);
+                        $bdd->crearusuari($data->nom,$data->correu,$data->rol,$data->contrasenya);
                     } else {
                         header('HTTP/1.1 405 Mètode no disponible');
                     }

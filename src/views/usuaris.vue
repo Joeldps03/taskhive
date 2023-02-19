@@ -68,8 +68,6 @@ export default {
       })
       .then(resultat => {
         this.desserts = resultat.data.usuaris;
-        console.log("ENtra aqui");
-        console.log(resultat.data);
       })
       .catch(error => {
         console.log(error);
