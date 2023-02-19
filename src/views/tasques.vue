@@ -78,6 +78,8 @@ export default {
   },
   methods: {
     redirectEditarTasques(id) {
+      
+      sessionStorage.setItem("idTasca", id)
       this.$router.push("tasquesEditar/" + id);
     },
     borrarTasques(idBorrar) { 
