@@ -418,3 +418,5 @@ class bdd
             return false;
     }
 }
+$bdd = new bdd();
+$bdd->eliminartasques(4);
