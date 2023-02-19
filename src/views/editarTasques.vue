@@ -17,7 +17,6 @@
                   clearable
                   :rules="rules"
                   v-model="nom"
-                  :value= desserts.nom
                 ></v-text-field>
               </v-col>
             </div>
@@ -207,6 +206,7 @@ export default {
       axios
         .post("http://localhost/api/editartasques/", {
           token: sessionStorage.tokenusuari,
+          id:sessionStorage.idTasca,
           nom: this.nom,
           descripcio: this.descripcio,
           id_usuari: this.id_usuari,
@@ -230,9 +230,8 @@ export default {
       .then(resultat => {
         // pillem amb el session storage els valors de la id i el rol
         //Així els tenim a mà en tot el codi
-        console.log(resultat.data.tasca)
+        console.log(resultat.data.tasca);
         this.desserts = resultat.data.tasca;
-
       })
       .catch(error => {
         console.log(error);

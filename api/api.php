@@ -62,17 +62,17 @@ class Server
                     echo json_encode($pasar);
                 }
                 else if ($accio == 'editartasques') {
-                    if ($method == "POST") {
-                        //Aquí hem de controlar el rol del usuari que fa la petició
-                        if ($data->correu == "tecnic") {
-                            $bdd->editartasquestecnic($_POST["id"], $_POST["estat"], $_POST["comentari"]);
-                        } else {
+                    // if ($method == "POST") {
+                    //     //Aquí hem de controlar el rol del usuari que fa la petició
+                    //     if ($data->correu == "tecnic") {
+                    //         $bdd->editartasquestecnic($data->id,$data->estat, $data->comentaris_tecnics);
+                    //     } else {
                             //Tant el gestor com l'admin poden editar la tasca sencera
-                            $bdd->editartasques($_POST["id"], $_POST["nom"], $_POST["descripcio"], $_POST["id_usuari"], $_POST["prioritat"], $_POST["estat"], $_POST["comentari"]);
-                        }
-                    } else {
-                        header('HTTP/1.1 405 Mètode no disponible');
-                    }
+                        $bdd->editartasques($data->id,$data->nom, $data->descripcio, $data->id_usuari, $data->prioritat, $data->estat, $data->comentaris_tecnics);
+                        // }
+                    // } else {
+                    //     header('HTTP/1.1 405 Mètode no disponible');
+                    // }
                 }
                 else if ($accio == 'creartasca') {
                     if ($method == "POST") {
