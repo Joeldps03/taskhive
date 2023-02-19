@@ -62,6 +62,10 @@ class Server
                     //cridem a la funcio de la api per a editar les tasques
                     $bdd->editartasques($data->id,$data->nom, $data->descripcio, $data->id_usuari, $data->prioritat, $data->estat, $data->comentaris_tecnics);
                 }
+                else if ($accio == 'editartasquestecnic') {
+                    //cridem a la funcio de la api per a editar les tasques
+                    $bdd->editartasquestecnic($data->id,$data->estat, $data->comentaris_tecnics);
+                }
                 else if ($accio == 'creartasca') {
                     if ($method == "POST") {
                         $bdd->creartasques($data->nom, $data->descripcio, $data->id_usuari, $data->prioritat, $data->estat, $data->comentaris_tecnics);
