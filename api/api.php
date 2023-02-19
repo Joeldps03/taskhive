@@ -76,7 +76,7 @@ class Server
                 }
                 else if ($accio == 'eliminar') {
                     if ($method == "POST") {
-                        $bdd->eliminartasques($_POST["id"]);
+                        $bdd->eliminartasques($data->id);
                     } else {
                         header('HTTP/1.1 405 Mètode no disponible');
                     }

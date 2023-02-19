@@ -23,7 +23,9 @@
                 <td>{{ item.prioritat }}</td>
                 <td>{{ item.estat }}</td>
                 <td>{{ item.id_usuari }}</td>
-                <div class="buttonEditar">
+
+                <div class="buttons">
+                  <div class="buttonEditar">
                   
                   <v-btn 
                   icon="mdi-pen" 
@@ -33,6 +35,21 @@
                   </v-btn>
 
                 </div>
+
+                <div class="buttonBorrar">
+                  
+                  <v-btn 
+                  icon="mdi-delete" 
+                  color="red" 
+                  @click="borrarTasques(item.id)"
+                  >
+                  </v-btn>
+
+                </div>
+                </div>
+                
+
+                
               </tr>
             </tbody>
           </v-table>
@@ -62,7 +79,22 @@ export default {
   methods: {
     redirectEditarTasques(id) {
       this.$router.push("tasquesEditar/" + id);
+    },
+    borrarTasques(idBorrar) { 
+
+       axios.post("http://localhost/api/eliminar/", {
+        id: idBorrar
+      })
+      .then(resultat => {
+        location.reload();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
     }
+      
   },
   mounted() { // este hook se ejecuta cuando el componente es montado
     axios.post("http://localhost/api/tasques/", {
@@ -71,7 +103,7 @@ export default {
       .then(resultat => {
         // pillem amb el session storage els valors de la id i el rol
         //Així els tenim a mà en tot el codi
-      
+        console.log(resultat.data.tasques)
         this.desserts = resultat.data.tasques;
         sessionStorage.setItem("id", resultat.data.usuari.id);
         sessionStorage.setItem("rol", resultat.data.usuari.rol);

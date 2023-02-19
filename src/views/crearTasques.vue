@@ -72,6 +72,7 @@
               Crear
             </v-btn>
           </div>
+          
       
         </v-container>
       </v-main>
@@ -111,7 +112,6 @@ export default {
       comentaris_tecnics: this.comentaris_tecnics,
   })
     .then(response => {
-      console.log(response)
       this.$router.push("/tasques");
     })
     .catch(error => {

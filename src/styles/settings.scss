@@ -95,8 +95,17 @@
     color: black;
     margin-bottom: 4px;
   }
+
+  .buttons{
+    display: flex;
+  }
   
   .buttonEditar {
+    margin-left: 25px;
+    margin-top: 3px;
+  }
+
+  .buttonBorrar {
     margin-left: 25px;
     margin-top: 3px;
   }
