@@ -224,6 +224,7 @@ export default {
     editarTasques() {
       axios
         .post("http://localhost/api/editartasques/", {
+          id:sessionStorage.idTasca,
           token: sessionStorage.tokenusuari,
           nom: this.nom,
           descripcio: this.descripcio,

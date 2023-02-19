@@ -35,21 +35,8 @@
                   </v-btn>
 
                 </div>
-
-                <div class="buttonBorrar">
-                  
-                  <v-btn 
-                  icon="mdi-delete" 
-                  color="red" 
-                  @click="borrarTasques(item.id)"
-                  >
-                  </v-btn>
-
                 </div>
-                </div>
-                
-
-                
+              
               </tr>
             </tbody>
           </v-table>
@@ -82,21 +69,10 @@ export default {
       sessionStorage.setItem("idTasca", id)
       this.$router.push("tasquesEditar/" + id);
     },
-    borrarTasques(id) { 
-       axios.post("http://localhost/api/eliminar/", {
-        idtasca: id
-      })
-      .then(resultat => {
-        console.log("elimina");
-        console.log(id);
-        // location.reload();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    }
   },
-  mounted() { // este hook se ejecuta cuando el componente es montado
+  mounted() { 
+    location.reload();
+    // este hook se ejecuta cuando el componente es montado
     axios.post("http://localhost/api/tasques/", {
         token: this.token
       })
@@ -110,7 +86,10 @@ export default {
       .catch(error => {
         console.log(error);
       });
-  }
+
+      
+  },
+ 
 
 };
 </script>

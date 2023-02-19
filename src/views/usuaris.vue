@@ -24,12 +24,7 @@
                 <td>{{ item.contrasenya }}</td>
                 <td>{{ item.rol }}</td>
                 <div class="buttonEditar">
-                <v-btn 
-                  icon="mdi-pen" 
-                  color="info" 
-                  @click="redirectEditarUsuaris(item.id)"
-                  >
-                  </v-btn>
+          
               </div>
               </tr>
               
@@ -58,9 +53,6 @@ export default {
     };
   },
   methods: {
-    redirectEditarUsuaris(id) {
-      this.$router.push("usuarisEditar/" + id);
-    }
   },
   mounted(){
     axios.post("http://localhost/api/usuari/", {

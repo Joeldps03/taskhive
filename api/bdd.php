@@ -260,28 +260,7 @@ class bdd
         }
     }
 
-    //Funció per a editar les Usuaris
-    // funció disponible per a l'admin
-    public static function editarusuari($id,$nom, $email, $rol, $contrasenya)
-    {
-        try {
-            //consulta d'inserció
-            $SQL = "UPDATE usuaris SET nom=:nom, email=:email, rol=:rol, contrasenya=:contrasenya WHERE id = :id";
-            $consulta = (BdD::$connection)->prepare($SQL);
-            $consulta->bindParam("nom", $nom);
-            $consulta->bindParam("email", $email);
-            $consulta->bindParam("rol", $rol);
-            $consulta->bindParam("contrasenya", $contrasenya);
-            $consulta->bindParam("id", $id);
-            try {
-                $result = $consulta->execute();
-            } catch (PDOException $e) {
-                echo "Errada en la inserció: " . $e->getMessage();
-            }
-        } catch (PDOException $e) {
-            echo "Errada en la conexió: " . $e->getMessage();
-        } 
-    }
+   
 
     //Funció per a llistar les Usuaris
     //Disponible per a l'admin
