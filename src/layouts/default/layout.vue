@@ -7,18 +7,11 @@
       />
     </v-col>
     
-    <div class="buscador">
-      <v-text-field
-        :loading="loading"
-        density="compact"
-        variant="solo"
-        label="Buscar ..."
-        append-inner-icon="mdi-magnify"
-        single-line
-        hide-details
-      
-        @click:append-inner="onClick"
-      ></v-text-field>
+    <div class="imatgeNomSenser">
+      <img
+        src="@/assets/imatges/Nom_Sense_Fonts.png"
+        style="width: 650px; height: 70px; margin-left: 100px;"
+      />
     </div>
   </v-app-bar>
 
