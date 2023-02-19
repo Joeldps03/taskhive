@@ -17,7 +17,7 @@
                   clearable
                   :rules="rules"
                   v-model="nom"
-                  
+                  :value= "desserts.length > 0 ? desserts[0].nom : ''"
                 ></v-text-field>
               </v-col>
             </div>
