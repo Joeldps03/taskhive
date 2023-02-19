@@ -72,8 +72,8 @@ export default {
       desserts: [],
       rol: null,
       id: null,
+      idtasca:null,
       token: sessionStorage.tokenusuari
-      
     };
   },
   methods: {
@@ -82,21 +82,19 @@ export default {
       sessionStorage.setItem("idTasca", id)
       this.$router.push("tasquesEditar/" + id);
     },
-    borrarTasques(idBorrar) { 
-
+    borrarTasques(id) { 
        axios.post("http://localhost/api/eliminar/", {
-        id: idBorrar
+        idtasca: id
       })
       .then(resultat => {
-        location.reload();
+        console.log("elimina");
+        console.log(id);
+        // location.reload();
       })
       .catch(error => {
         console.log(error);
       });
-
-
     }
-      
   },
   mounted() { // este hook se ejecuta cuando el componente es montado
     axios.post("http://localhost/api/tasques/", {
@@ -108,7 +106,6 @@ export default {
         this.desserts = resultat.data.tasques;
         sessionStorage.setItem("id", resultat.data.usuari.id);
         sessionStorage.setItem("rol", resultat.data.usuari.rol);
-
       })
       .catch(error => {
         console.log(error);
