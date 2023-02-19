@@ -92,6 +92,33 @@ class bdd
         }
     }
 
+    public static function llistarunatasca($id)
+    {
+        try 
+        {
+            $resposta=null;
+            //select de les tàsques ordenades per prioritat
+            $SQL = "SELECT * FROM tasques WHERE id = :id";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            //passant el id del usuari aconseguim mostrar només les taques assignades a aquell usuari
+            $consulta->bindParam("id", $id);
+            $consulta->setFetchMode(PDO::FETCH_ASSOC);
+            $qFiles = $consulta->execute(); 
+            $result = $consulta->fetchAll();
+            if ($consulta->rowCount() > 0){
+                //retornem un array de les tàsques
+                foreach($result as $tasca){
+                    $resposta[]=$tasca;
+                }
+            }
+            return $resposta;
+        }
+        catch(PDOException $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+    
+
     //listar usuaris per a l'admin i el gestor
     public static function llistarTasques()
     {
