@@ -41,6 +41,13 @@ class Server
                     // } else
                     //     header('HTTP/1.1 404 usuari no trobat');
                 }
+                else if ($accio == 'llistarunatasca') {
+                    //Controlem el tipus d'usuari
+                    $llistartasca=null;
+                    $llistartasca=$bdd->llistarunatasca($data->id);
+                    $pasar=array("tasca"=>$llistartasca);
+                    echo json_encode($pasar);
+                }
                 else if ($accio == 'tasques') {
                     //Controlem el tipus d'usuari
                     $usuari=$bdd->existeixtokenusuaris($token);

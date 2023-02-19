@@ -17,6 +17,7 @@
                   clearable
                   :rules="rules"
                   v-model="nom"
+                  :value= desserts.nom
                 ></v-text-field>
               </v-col>
             </div>
@@ -196,6 +197,7 @@ export default {
       estat: "pendent",
       comentaris_tecnics: "",
       loading: false,
+      desserts:[],
       userRole: sessionStorage.rol,
       rules: [(v) => !!v || "Camp requerit"],
     };
@@ -220,21 +222,23 @@ export default {
         });
     },
   },
-  mounted(){
+  mounted() { // este hook se ejecuta cuando el componente es montado
+    axios.post("http://localhost/api/llistarunatasca/", {
+        token: sessionStorage.tokenusuari,
+        id:sessionStorage.idTasca
+      })
+      .then(resultat => {
+        // pillem amb el session storage els valors de la id i el rol
+        //Així els tenim a mà en tot el codi
+        console.log(resultat.data.tasca)
+        this.desserts = resultat.data.tasca;
 
-     axios
-        .post("http://localhost/api/selectTasques/", {
-          id: sessionStorage.idTasca
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.error(error); // manejar el error de la solicitud
-        })
-    
-
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
+
 };
 </script>
 
