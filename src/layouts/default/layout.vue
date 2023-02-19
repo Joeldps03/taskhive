@@ -167,9 +167,9 @@ export default {
     },
   },
   mounted() {
-    setTimeout(() => {
-      location.reload();
-    }, 1);
+    // setTimeout(() => {
+    //   location.reload();
+    // }, 1);
   },
 
   watch: {

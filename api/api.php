@@ -46,9 +46,7 @@ class Server
                     $usuari=$bdd->existeixtokenusuaris($token);
                     $llistartasques=null;
                     if ($usuari["rol"] == "tecnic") {
-                        header('HTTP/1.1 202 Gorl Tecnic');
                         $llistartasques=$bdd->llistarTasquesUser($usuari["id"]);
-
                     } else {
                         $llistartasques=$bdd->llistarTasques();
                         header('HTTP/1.1 202 Goel Gestor');
@@ -91,11 +89,10 @@ class Server
                     }
                 }
                 else if ($accio == 'usuari') {
-                    if ($method == "GET") {
-                        $bdd->llistarusuaris();
-                    } else {
-                        header('HTTP/1.1 405 Mètode no disponible');
-                    }
+                    $llistarusuaris=null;
+                    $llistarusuaris=$bdd->llistarusuaris();
+                    $pasardades=array("usuaris"=>$llistarusuaris);
+                    echo json_encode($pasardades);
                 }
                 else if ($accio == 'crearusuari') {
                     if ($method == "POST") {

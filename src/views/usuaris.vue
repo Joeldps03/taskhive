@@ -60,19 +60,21 @@ export default {
   methods: {
     redirectEditarUsuaris(id) {
       this.$router.push("usuarisEditar/" + id);
-    },
-    fetchDesserts() {
-      axios.get("http://localhost/taskhive/api/usuarios")
-        .then(response => {
-          this.desserts = response.data; 
-        })
-        .catch(error => {
-          console.log(error);
-        });
     }
+  },
+  mounted(){
+    axios.post("http://localhost/api/usuari/", {
+        token: sessionStorage.tokenusuari
+      })
+      .then(resultat => {
+        this.desserts = resultat.data.usuaris;
+        console.log("ENtra aqui");
+        console.log(resultat.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
-
-
 };
 </script>
 

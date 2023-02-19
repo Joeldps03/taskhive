@@ -270,13 +270,10 @@ class bdd
             $qFiles = $consulta->execute(); 
             $result = $consulta->fetchAll();
             if ($consulta->rowCount() > 0){
-                foreach($result as $tasca){
-                    $resposta[]=$tasca;
+                //retornem un array dels usuaris
+                foreach($result as $usuari){
+                    $resposta[]=$usuari;
                 }
-            }
-            else{
-                echo "no Funciona";
-                exit;
             }
             return $resposta;
         }

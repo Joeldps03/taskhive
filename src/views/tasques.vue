@@ -45,7 +45,6 @@
 <script>
 import layout from "@/layouts/default/layout.vue";
 import axios from 'axios';
-console.log("entra2");
 export default {
   components: { layout},
   name: "tasques",
