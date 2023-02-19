@@ -71,7 +71,7 @@ export default {
     },
   },
   mounted() { 
-    location.reload();
+    
     // este hook se ejecuta cuando el componente es montado
     axios.post("http://localhost/api/tasques/", {
         token: this.token

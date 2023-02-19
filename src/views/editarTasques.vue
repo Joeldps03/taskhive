@@ -182,7 +182,8 @@
             </div>
           </div>
 
-          <div class="buttonEditar2">
+          <div v-if="userRole != 'tecnic'">
+            <div  class="buttonEditar2">
             <v-btn
               :loading="loading"
               color="blue"
@@ -193,7 +194,28 @@
             >
               Editar
             </v-btn>
+            </div>
           </div>
+
+          <div v-if="userRole === 'tecnic'">
+
+             <div  class="buttonEditar2">
+            <v-btn
+              :loading="loading"
+              color="blue"
+              size="large"
+              type="submit"
+              variant="outlined"
+              @click="editarTasquesTecnic()"
+            >
+              Editar
+            </v-btn>
+
+          </div>
+
+          </div>
+
+           
         </v-container>
       </v-main>
     </v-layout>
@@ -234,12 +256,32 @@ export default {
           comentaris_tecnics: this.comentaris_tecnics,
         })
         .then((response) => {
-          this.$router.push("/tasques");
+          console.log("hola")
+          // this.$router.push("/tasques");
         })
         .catch((error) => {
           console.error(error); // manejar el error de la solicitud
         });
     },
+
+    editarTasquesTecnic() {
+
+      axios
+        .post("http://localhost/api/editartasquestecnic/", {
+          id:sessionStorage.idTasca,
+          token: sessionStorage.tokenusuari,
+          estat: this.estat,
+          comentaris_tecnics: this.comentaris_tecnics
+        })
+        .then((response) => {
+          this.$router.push("/tasques");
+        })
+        .catch((error) => {
+          console.error(error); // manejar el error de la solicitud
+        });
+
+
+    }
   },
   mounted() { // este hook se ejecuta cuando el componente es montado
     axios.post("http://localhost/api/llistarunatasca/", {

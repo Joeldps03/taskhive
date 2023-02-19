@@ -88,7 +88,10 @@ export default {
         if(resultat.data){
           
           sessionStorage.setItem("tokenusuari", resultat.data.token)
+          
           this.$router.push("/tasques");
+
+          
         }        
       })
       .catch(error => {

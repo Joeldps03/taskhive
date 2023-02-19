@@ -135,7 +135,8 @@ export default {
   name: "layout",
   data() {
     return {
-      userRole: sessionStorage.rol
+      userRole: sessionStorage.rol,
+      reloadPage: true
     };
   },
   methods: {
@@ -158,13 +159,10 @@ export default {
     tencarSessio() {
       this.$router.push("/iniciarSessio");
     },
+ 
   },
-  mounted() {
-    // setTimeout(() => {
-    //   location.reload();
-    // }, 1);
-  },
-
+ 
+ 
   watch: {
     group() {
       this.drawer = false;
