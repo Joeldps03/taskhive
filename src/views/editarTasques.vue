@@ -17,7 +17,8 @@
                   clearable
                   :rules="rules"
                   v-model="nom"
-                  :label= "this.desserts.length > 0 ? this.desserts[0].nom : ''"
+                  :label="this.desserts.length > 0 ? this.desserts[0].nom : ''"
+                  
                 ></v-text-field>
               </v-col>
             </div>
@@ -30,9 +31,10 @@
                   <v-select
                     clearable
                     :rules="rules"
-                    v-model="estat"
-                    :label= "this.desserts.length > 0 ? this.desserts[0].estat : ''"
                     :items="['pendent', 'cursant', 'acabada']"
+                    v-model="estat"
+                    :label="this.desserts.length > 0 ? this.desserts[0].estat : ''"
+
                   ></v-select>
                 </v-col>
               </div>
@@ -45,7 +47,8 @@
                     clearable
                     :rules="rules"
                     v-model="prioritat"
-                    :label= "this.desserts.length > 0 ? this.desserts[0].prioritat : ''"
+                    :label="this.desserts.length > 0 ? this.desserts[0].prioritat : ''"
+
                   ></v-text-field>
                 </v-col>
               </div>
@@ -58,7 +61,8 @@
                     clearable
                     :rules="rules"
                     v-model="id_usuari"
-                    :label= "this.desserts.length > 0 ? this.desserts[0].id_usuari : ''"
+                    :label="this.desserts.length > 0 ? this.desserts[0].id_usuari : ''"
+
                   ></v-text-field>
                 </v-col>
               </div>
@@ -69,9 +73,9 @@
                 <h3>Descripció</h3>
 
                 <v-col cols="15">
-                  <v-textarea clearable 
-                  v-model="descripcio"
+                  <v-textarea clearable v-model="descripcio"
                   :label= "this.desserts.length > 0 ? this.desserts[0].descripcio : ''"
+
                   ></v-textarea>
                 </v-col>
               </div>
@@ -83,7 +87,8 @@
                   <v-textarea
                     clearable
                     v-model="comentaris_tecnics"
-                    :label= "this.desserts.length > 0 ? this.desserts[0].comentaris_tecnics : ''"
+                    :label="this.desserts.length > 0 ? this.desserts[0].comentaris_tecnics : ''"
+
                   ></v-textarea>
                 </v-col>
               </div>
@@ -99,8 +104,8 @@
                   clearable
                   :rules="rules"
                   v-model="nom"
+                  :label="this.desserts.length > 0 ? this.desserts[0].nom : ''"
                   readonly
-                  :label= "this.desserts.length > 0 ? this.desserts[0].nom : ''"
                 ></v-text-field>
               </v-col>
             </div>
@@ -114,8 +119,8 @@
                     clearable
                     :rules="rules"
                     v-model="estat"
+                    :label="this.desserts.length > 0 ? this.desserts[0].estat : ''"
                     :items="['pendent', 'cursant', 'acabada']"
-                    :label= "this.desserts.length > 0 ? this.desserts[0].estat : ''"
                   ></v-select>
                 </v-col>
               </div>
@@ -128,8 +133,8 @@
                     clearable
                     :rules="rules"
                     v-model="prioritat"
+                    :label="this.desserts.length > 0 ? this.desserts[0].prioritat : ''"
                     readonly
-                    :label= "this.desserts.length > 0 ? this.desserts[0].prioritat : ''"
                   ></v-text-field>
                 </v-col>
               </div>
@@ -142,8 +147,8 @@
                     clearable
                     :rules="rules"
                     v-model="id_usuari"
+                    :label="this.desserts.length > 0 ? this.desserts[0].id_usuari : ''"
                     readonly
-                    :label= "this.desserts.length > 0 ? this.desserts[0].id_usuari : ''"
                   ></v-text-field>
                 </v-col>
               </div>
@@ -157,8 +162,8 @@
                   <v-textarea
                     clearable
                     v-model="descripcio"
+                    :label="this.desserts.length > 0 ? this.desserts[0].descripcio : ''"
                     readonly
-                    :label= "this.desserts.length > 0 ? this.desserts[0].descripcio : ''"
                   ></v-textarea>
                 </v-col>
               </div>
@@ -170,7 +175,7 @@
                   <v-textarea
                     clearable
                     v-model="comentaris_tecnics"
-                    :label= "this.desserts.length > 0 ? this.desserts[0].comentaris_tecnics : ''"
+                    :label="this.desserts.length > 0 ? this.desserts[0].comentaris_tecnics : ''"
                   ></v-textarea>
                 </v-col>
               </div>
