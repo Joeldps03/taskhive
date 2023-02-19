@@ -17,6 +17,7 @@
                   clearable
                   :rules="rules"
                   v-model="nom"
+                  
                 ></v-text-field>
               </v-col>
             </div>
@@ -31,6 +32,7 @@
                     :rules="rules"
                     v-model="estat"
                     :items="['pendent', 'cursant', 'acabada']"
+                    :value= "desserts.length > 0 ? desserts[0].estat : ''"
                   ></v-select>
                 </v-col>
               </div>
@@ -43,6 +45,7 @@
                     clearable
                     :rules="rules"
                     v-model="prioritat"
+                    :value= "desserts.length > 0 ? desserts[0].prioritat : ''"
                   ></v-text-field>
                 </v-col>
               </div>
@@ -55,6 +58,7 @@
                     clearable
                     :rules="rules"
                     v-model="id_usuari"
+                    :value= "desserts.length > 0 ? desserts[0].id_usuari : ''"
                   ></v-text-field>
                 </v-col>
               </div>
@@ -65,7 +69,11 @@
                 <h3>Descripció</h3>
 
                 <v-col cols="15">
-                  <v-textarea clearable v-model="descripcio"></v-textarea>
+                  <v-textarea 
+                  clearable 
+                  v-model="descripcio"
+                  :value= "desserts.length > 0 ? desserts[0].descripcio : ''"
+                  ></v-textarea>
                 </v-col>
               </div>
 
@@ -76,6 +84,7 @@
                   <v-textarea
                     clearable
                     v-model="comentaris_tecnics"
+                    :value= "desserts.length > 0 ? desserts[0].comentaris_tecnics : ''"
                   ></v-textarea>
                 </v-col>
               </div>
