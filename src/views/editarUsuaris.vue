@@ -1,7 +1,8 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout> 
+      </layout>
       <v-main>
         <v-container class="container">
           <div class="titul">
