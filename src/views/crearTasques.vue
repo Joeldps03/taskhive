@@ -12,7 +12,7 @@
             <h3>Tasca</h3>
 
             <v-col cols="100">
-              <v-text-field clearable :rules="rules"></v-text-field>
+              <v-text-field clearable :rules="rules" v-model="nom"></v-text-field>
             </v-col>
           </div>
           
@@ -21,7 +21,7 @@
             <h3>Estat</h3>
 
             <v-col cols="100" >
-              <v-text-field clearable :rules="rules"></v-text-field>
+              <v-text-field clearable :rules="rules" v-model="estat"></v-text-field>
             </v-col>
             </div>
 
@@ -29,7 +29,7 @@
             <h3>Prioritat</h3>
 
             <v-col cols="100">
-              <v-text-field clearable :rules="rules"></v-text-field>
+              <v-text-field clearable :rules="rules" v-model="prioritat"></v-text-field>
             </v-col>
             </div>
 
@@ -37,7 +37,7 @@
               <h3>Usuari asignat</h3>
 
               <v-col cols="100">
-                <v-text-field clearable :rules="rules"></v-text-field>
+                <v-text-field clearable :rules="rules" v-model="id_usuari"></v-text-field>
               </v-col>
             </div>
           </div>
@@ -47,7 +47,7 @@
               <h3>Descripció</h3>
 
               <v-col cols="15">
-                <v-textarea clearable ></v-textarea>
+                <v-textarea clearable v-model="descripcio" ></v-textarea>
               </v-col>
             </div>
 
@@ -55,7 +55,7 @@
               <h3>Comentari</h3>
 
               <v-col cols="15">
-                <v-textarea clearable ></v-textarea>
+                <v-textarea clearable v-model="comentaris_tecnics" ></v-textarea>
               </v-col>
             </div>
           </div>
@@ -67,6 +67,7 @@
               size="large"
               type="submit"
               variant="outlined"
+              @click="crearTasques"
             >
               Crear
             </v-btn>
@@ -86,46 +87,39 @@ export default {
   name: "crearTasques",
   data() {
     return {
-      tasca: '',
-      estat: '',
-      prioritat: '',
-      usuariAsignat: '',
-      descripcio: '',
-      comentari: '',
+      nom:"",
+      descripcio:"",
+      id_usuari:"",
+      prioritat:"",
+      estat:"",
+      comentaris_tecnics: "",
       loading: false,
       rules: [
         v => !!v || 'Camp requerit'
       ]
-    }
+    };
   },
   methods: {
-    crearTasca() {
-      this.loading = true;
-      axios({
-        method: 'post',
-        url: 'http://localhost:3000/crear-tasca',
-        data: {
-          tasca: this.tasca,
-          estat: this.estat,
-          prioritat: this.prioritat,
-          usuariAsignat: this.usuariAsignat,
-          descripcio: this.descripcio,
-          comentari: this.comentari
-        }
-      })
-      .then((response) => {
-        console.log(response);
-        this.loading = false;
-      })
-      .catch((error) => {
-        console.log(error);
-        this.loading = false;
-      });
-    }
-  }
-
-}
-
+    crearTasques() {
+      axios.post("http://localhost/api/creartasca/", {
+      token: sessionStorage.tokenusuari,
+      nom: this.nom,
+      descripcio: this.descripcio,
+      id_usuari:this.id_usuari,
+      prioritat:this.prioritat,
+      estat:this.estat,
+      comentaris_tecnics: this.comentaris_tecnics,
+  })
+    .then(response => {
+      console.log(response)
+      this.$router.push("/tasques");
+    })
+    .catch(error => {
+      console.error(error); // manejar el error de la solicitud
+    });
+},
+  },
+};
 </script>
 
 <style src="@/styles/settings.scss">

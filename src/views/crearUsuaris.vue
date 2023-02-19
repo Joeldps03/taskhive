@@ -12,7 +12,7 @@
             <h3>Nom</h3>
 
             <v-col cols="6">
-              <v-text-field ref="nom" clearable :rules="rules"></v-text-field>
+              <v-text-field v-model="nom" ref="nom" clearable :rules="rules"></v-text-field>
             </v-col>
           </div>
 
@@ -20,7 +20,7 @@
           <h3>Correu</h3>
 
           <v-col cols="10">
-            <v-text-field ref="correu" clearable :rules="rules"></v-text-field>
+            <v-text-field  v-model="correu" ref="correu" clearable :rules="rules"></v-text-field>
           </v-col>
           </div>
 
@@ -28,7 +28,7 @@
           <h3>Contrasenya</h3>
 
           <v-col cols="10">
-            <v-text-field ref="contrasenya" clearable :rules="rules"></v-text-field>
+            <v-text-field  v-model="contrasenya" ref="contrasenya" clearable :rules="rules"></v-text-field>
           </v-col>
           </div>
 
@@ -36,7 +36,7 @@
             <h3>Rol</h3>
 
             <v-col cols="6">
-              <v-text-field ref="rol" clearable :rules="rules"></v-text-field>
+              <v-text-field  v-model="rol" ref="rol" clearable :rules="rules"></v-text-field>
             </v-col>
           </div>
 
@@ -64,7 +64,7 @@ import axios from 'axios';
 
 export default {
   components: { layout },
-  name: "editarUsuaris",
+  name: "crearusuari",
   data() {
     return {
       nom: '',
@@ -87,7 +87,7 @@ export default {
       rol: this.rol,
   })
     .then(response => {
-      console.log("INSERT"); // hacer algo con la respuesta de la API
+      console.log(response)
       this.$router.push("/usuaris");
     })
     .catch(error => {

@@ -69,7 +69,7 @@ class Server
                 }
                 else if ($accio == 'creartasca') {
                     if ($method == "POST") {
-                        $bdd->creartasques($_POST["nom"], $_POST["descripcio"], $_POST["id_usuari"], $_POST["prioritat"], $_POST["estat"], $_POST["comentari"]);
+                        $bdd->creartasques($data->nom, $data->descripcio, $data->id_usuari, $data->prioritat, $data->estat, $data->comentaris_tecnics);
                     } else {
                         header('HTTP/1.1 405 Mètode no disponible');
                     }

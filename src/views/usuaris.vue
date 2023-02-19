@@ -19,7 +19,7 @@
             </thead>
             <tbody>
               <tr v-for="item in desserts" :key="item.id">
-                <td>{{ item.correu }}</td>
+                <td>{{ item.email }}</td>
                 <td>{{ item.nom }}</td>
                 <td>{{ item.contrasenya }}</td>
                 <td>{{ item.rol }}</td>
@@ -68,6 +68,7 @@ export default {
       })
       .then(resultat => {
         this.desserts = resultat.data.usuaris;
+        console.log(resultat.data.usuaris)
       })
       .catch(error => {
         console.log(error);
