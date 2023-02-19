@@ -1,5 +1,6 @@
 <template>
   <div id="fonsDePantalla">
+    <!-- Form per fer el submite de iniciar sessió -->
     <v-form v-model="form" @submit.prevent="onSubmit" class="divCentre">
       <v-col cols="20">
         <v-text-field
@@ -49,18 +50,21 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+import axios from "axios";
 
 export default {
   data() {
     return {
       mostrar: true,
       rules: {
+        // Regla de obligatoria de posar el camp
         required: (value) => !!value || "Obligatori.",
+        // Regla minim 8 caracters
         min: (v) => v.length >= 8 || "Mínim 8 caràcters.",
+        //regla comprovar contrsenya
         comprovarContrasenya: () =>
           `El correu electrònic i la contrasenya que heu introduït no coincideixen.`,
+        //Regla validació correu
         email: (value) => {
           const pattern =
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -72,38 +76,34 @@ export default {
       contrasenya: null,
       loading: false,
       message: "",
-      token: sessionStorage.tokenconvidat
+      token: sessionStorage.tokenconvidat,
     };
   },
   methods: {
-    onSubmit() { 
-      // if(!(this.correu=="" && this.contrasenya=="")){
-      axios.post("http://localhost/api/login/",{
-        correu: this.correu,
-        contrasenya: this.contrasenya,
-        token: this.token
-      })
+    onSubmit() {
+      
+      axios
+        .post("http://localhost/api/login/", {
+          correu: this.correu,
+          contrasenya: this.contrasenya,
+          token: this.token,
+        })
         //pillem el valor de l'api i ho introduim dintre de resposta
-      .then(resultat => {
-        if(resultat.data){
-          
-          sessionStorage.setItem("tokenusuari", resultat.data.token)
-          
-          this.$router.push("/tasques");
+        .then((resultat) => {
+          if (resultat.data) {
+            sessionStorage.setItem("tokenusuari", resultat.data.token);
 
-          
-        }        
-      })
-      .catch(error => {
-        // si hay un error, mostramos un mensaje de error
-        this.message = 'Credencials invàlides, si us plau intenteu de nou.';
-      });
-      // }
-    },  
+            this.$router.push("/tasques");
+          }
+        })
+        .catch((error) => {
+          // si hi ha un error, mostramos un missatge d'error
+          this.message = "Credencials invàlides, si us plau intenteu de nou.";
+        });
+      
+    },
   },
 };
 </script>
 
-<style src="@/styles/settings.scss">
-</style>
-
+<style src="@/styles/settings.scss"></style>

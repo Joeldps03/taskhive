@@ -7,7 +7,7 @@
           <div class="titul">
             <h1>Editar tasca</h1>
           </div>
-
+<!-- Si es no es tecnic te mes privilegis per editar els camps -->
           <div v-if="userRole != 'tecnic'">
             <div class="divAltres">
               <h3>Tasca</h3>
@@ -18,7 +18,6 @@
                   :rules="rules"
                   v-model="nom"
                   :label="this.desserts.length > 0 ? this.desserts[0].nom : ''"
-                  
                 ></v-text-field>
               </v-col>
             </div>
@@ -33,8 +32,9 @@
                     :rules="rules"
                     :items="['pendent', 'cursant', 'acabada']"
                     v-model="estat"
-                    :label="this.desserts.length > 0 ? this.desserts[0].estat : ''"
-
+                    :label="
+                      this.desserts.length > 0 ? this.desserts[0].estat : ''
+                    "
                   ></v-select>
                 </v-col>
               </div>
@@ -47,8 +47,9 @@
                     clearable
                     :rules="rules"
                     v-model="prioritat"
-                    :label="this.desserts.length > 0 ? this.desserts[0].prioritat : ''"
-
+                    :label="
+                      this.desserts.length > 0 ? this.desserts[0].prioritat : ''
+                    "
                   ></v-text-field>
                 </v-col>
               </div>
@@ -61,8 +62,9 @@
                     clearable
                     :rules="rules"
                     v-model="id_usuari"
-                    :label="this.desserts.length > 0 ? this.desserts[0].id_usuari : ''"
-
+                    :label="
+                      this.desserts.length > 0 ? this.desserts[0].id_usuari : ''
+                    "
                   ></v-text-field>
                 </v-col>
               </div>
@@ -73,9 +75,14 @@
                 <h3>Descripció</h3>
 
                 <v-col cols="15">
-                  <v-textarea clearable v-model="descripcio"
-                  :label= "this.desserts.length > 0 ? this.desserts[0].descripcio : ''"
-
+                  <v-textarea
+                    clearable
+                    v-model="descripcio"
+                    :label="
+                      this.desserts.length > 0
+                        ? this.desserts[0].descripcio
+                        : ''
+                    "
                   ></v-textarea>
                 </v-col>
               </div>
@@ -87,14 +94,17 @@
                   <v-textarea
                     clearable
                     v-model="comentaris_tecnics"
-                    :label="this.desserts.length > 0 ? this.desserts[0].comentaris_tecnics : ''"
-
+                    :label="
+                      this.desserts.length > 0
+                        ? this.desserts[0].comentaris_tecnics
+                        : ''
+                    "
                   ></v-textarea>
                 </v-col>
               </div>
             </div>
           </div>
-
+<!-- Si es tecnic nomes podra canviar el camp comentari i el camp estat -->
           <div v-else-if="userRole === 'tecnic'">
             <div class="divAltres">
               <h3>Tasca</h3>
@@ -119,7 +129,9 @@
                     clearable
                     :rules="rules"
                     v-model="estat"
-                    :label="this.desserts.length > 0 ? this.desserts[0].estat : ''"
+                    :label="
+                      this.desserts.length > 0 ? this.desserts[0].estat : ''
+                    "
                     :items="['pendent', 'cursant', 'acabada']"
                   ></v-select>
                 </v-col>
@@ -133,7 +145,9 @@
                     clearable
                     :rules="rules"
                     v-model="prioritat"
-                    :label="this.desserts.length > 0 ? this.desserts[0].prioritat : ''"
+                    :label="
+                      this.desserts.length > 0 ? this.desserts[0].prioritat : ''
+                    "
                     readonly
                   ></v-text-field>
                 </v-col>
@@ -147,7 +161,9 @@
                     clearable
                     :rules="rules"
                     v-model="id_usuari"
-                    :label="this.desserts.length > 0 ? this.desserts[0].id_usuari : ''"
+                    :label="
+                      this.desserts.length > 0 ? this.desserts[0].id_usuari : ''
+                    "
                     readonly
                   ></v-text-field>
                 </v-col>
@@ -162,7 +178,11 @@
                   <v-textarea
                     clearable
                     v-model="descripcio"
-                    :label="this.desserts.length > 0 ? this.desserts[0].descripcio : ''"
+                    :label="
+                      this.desserts.length > 0
+                        ? this.desserts[0].descripcio
+                        : ''
+                    "
                     readonly
                   ></v-textarea>
                 </v-col>
@@ -175,47 +195,46 @@
                   <v-textarea
                     clearable
                     v-model="comentaris_tecnics"
-                    :label="this.desserts.length > 0 ? this.desserts[0].comentaris_tecnics : ''"
+                    :label="
+                      this.desserts.length > 0
+                        ? this.desserts[0].comentaris_tecnics
+                        : ''
+                    "
                   ></v-textarea>
                 </v-col>
               </div>
             </div>
           </div>
-
+<!-- Dos if, un executa un metode per si no es tecnic i l'altre al contrari -->
           <div v-if="userRole != 'tecnic'">
-            <div  class="buttonEditar2">
-            <v-btn
-              :loading="loading"
-              color="blue"
-              size="large"
-              type="submit"
-              variant="outlined"
-              @click="editarTasques()"
-            >
-              Editar
-            </v-btn>
+            <div class="buttonEditar2">
+              <v-btn
+                :loading="loading"
+                color="blue"
+                size="large"
+                type="submit"
+                variant="outlined"
+                @click="editarTasques()"
+              >
+                Editar
+              </v-btn>
             </div>
           </div>
 
           <div v-if="userRole === 'tecnic'">
-
-             <div  class="buttonEditar2">
-            <v-btn
-              :loading="loading"
-              color="blue"
-              size="large"
-              type="submit"
-              variant="outlined"
-              @click="editarTasquesTecnic()"
-            >
-              Editar
-            </v-btn>
-
+            <div class="buttonEditar2">
+              <v-btn
+                :loading="loading"
+                color="blue"
+                size="large"
+                type="submit"
+                variant="outlined"
+                @click="editarTasquesTecnic()"
+              >
+                Editar
+              </v-btn>
+            </div>
           </div>
-
-          </div>
-
-           
         </v-container>
       </v-main>
     </v-layout>
@@ -237,16 +256,17 @@ export default {
       estat: "pendent",
       comentaris_tecnics: "",
       loading: false,
-      desserts:[],
+      desserts: [],
       userRole: sessionStorage.rol,
       rules: [(v) => !!v || "Camp requerit"],
     };
   },
   methods: {
+    //Crida a axios per si no es tecnic
     editarTasques() {
       axios
         .post("http://localhost/api/editartasques/", {
-          id:sessionStorage.idTasca,
+          id: sessionStorage.idTasca,
           token: sessionStorage.tokenusuari,
           nom: this.nom,
           descripcio: this.descripcio,
@@ -256,50 +276,43 @@ export default {
           comentaris_tecnics: this.comentaris_tecnics,
         })
         .then((response) => {
-          console.log("hola")
-          // this.$router.push("/tasques");
+          this.$router.push("/tasques");
         })
         .catch((error) => {
-          console.error(error); // manejar el error de la solicitud
+          console.error(error); // Si hi ha error de solicitud el mostra
         });
     },
-
+//Crida a axios per si és tecnic
     editarTasquesTecnic() {
-
       axios
         .post("http://localhost/api/editartasquestecnic/", {
-          id:sessionStorage.idTasca,
+          id: sessionStorage.idTasca,
           token: sessionStorage.tokenusuari,
           estat: this.estat,
-          comentaris_tecnics: this.comentaris_tecnics
+          comentaris_tecnics: this.comentaris_tecnics,
         })
         .then((response) => {
           this.$router.push("/tasques");
         })
         .catch((error) => {
-          console.error(error); // manejar el error de la solicitud
+          console.error(error); // Si hi ha error de solicitud el mostra
         });
-
-
-    }
+    },
   },
-  mounted() { // este hook se ejecuta cuando el componente es montado
-    axios.post("http://localhost/api/llistarunatasca/", {
+  mounted() {
+    // Aquest axios li pasa la dada de id de tasca per que retorni un select per emplenar els camps
+    axios
+      .post("http://localhost/api/llistarunatasca/", {
         token: sessionStorage.tokenusuari,
-        id:sessionStorage.idTasca
+        id: sessionStorage.idTasca,
       })
-      .then(resultat => {
-        // pillem amb el session storage els valors de la id i el rol
-        //Així els tenim a mà en tot el codi
-        console.log(resultat.data.tasca)
+      .then((resultat) => {
         this.desserts = resultat.data.tasca;
-
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
-  }
-
+  },
 };
 </script>
 

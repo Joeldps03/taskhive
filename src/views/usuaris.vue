@@ -7,6 +7,7 @@
           <div class="titul">
             <h1>Usuaris</h1>
           </div>
+          <!-- Llistar usuaris -->
           <v-table fixed-header height="500px" show-expand>
             <thead>
               <tr>
@@ -23,14 +24,10 @@
                 <td>{{ item.nom }}</td>
                 <td>{{ item.contrasenya }}</td>
                 <td>{{ item.rol }}</td>
-                <div class="buttonEditar">
-          
-              </div>
+                <div class="buttonEditar"></div>
               </tr>
-              
             </tbody>
           </v-table>
-
         </v-container>
       </v-main>
     </v-layout>
@@ -39,7 +36,7 @@
 
 <script>
 import layout from "@/layouts/default/layout.vue";
-import axios from 'axios';
+import axios from "axios";
 
 export default {
   components: { layout },
@@ -48,26 +45,25 @@ export default {
     return {
       expanded: [],
       singleExpand: false,
-      desserts: [] 
-      
+      desserts: [],
     };
   },
-  methods: {
-  },
-  mounted(){
-    axios.post("http://localhost/api/usuari/", {
-        token: sessionStorage.tokenusuari
+  methods: {},
+  mounted() {
+    //Axios per llistar usuaris
+    axios
+      .post("http://localhost/api/usuari/", {
+        token: sessionStorage.tokenusuari,
       })
-      .then(resultat => {
+      .then((resultat) => {
         this.desserts = resultat.data.usuaris;
-        console.log(resultat.data.usuaris)
+        console.log(resultat.data.usuaris);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
-  }
+  },
 };
 </script>
 
-<style src="@/styles/settings.scss">
-</style>
+<style src="@/styles/settings.scss"></style>
