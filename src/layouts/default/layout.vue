@@ -161,13 +161,7 @@ export default {
     },
  
   },
- 
- 
-  watch: {
-    group() {
-      this.drawer = false;
-    },
-  },
+
 };
 </script>
 
