@@ -301,6 +301,9 @@ export default {
     },
   },
   mounted() {
+    this.rol = sessionStorage.rol;
+
+     
     // Aquest axios li pasa la dada de id de tasca per que retorni un select per emplenar els camps
     axios
       .post("http://taskhive.daw.institutmontilivi.cat/api/llistarunatasca/", {
@@ -308,7 +311,7 @@ export default {
         id: sessionStorage.idTasca,
       })
       .then((resultat) => {
-        this.rol = sessionStorage.rol;
+       
         this.desserts = resultat.data.tasca;
       })
       .catch((error) => {

@@ -117,7 +117,7 @@ export default {
         });
     },
   },
-   mounted(){
+   created(){
     this.rolLayout = sessionStorage.rol;
   }
 };

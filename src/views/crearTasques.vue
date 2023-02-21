@@ -139,7 +139,8 @@ export default {
         });
     },
   },
-  mounted(){
+  
+  created(){
     this.rol = sessionStorage.rol;
   }
   

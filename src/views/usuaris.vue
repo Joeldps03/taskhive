@@ -51,13 +51,14 @@ export default {
   },
   methods: {},
   mounted() {
+    this.rol = sessionStorage.rol;
     //Axios per llistar usuaris
     axios
       .post("http://taskhive.daw.institutmontilivi.cat/api/usuari/", {
         token: sessionStorage.tokenusuari,
       })
       .then((resultat) => {
-        this.rol = sessionStorage.rol;
+        
         this.desserts = resultat.data.usuaris;
         console.log(resultat.data.usuaris);
       })
