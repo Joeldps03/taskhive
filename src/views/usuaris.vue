@@ -52,7 +52,7 @@ export default {
   mounted() {
     //Axios per llistar usuaris
     axios
-      .post("http://localhost/api/usuari/", {
+      .post("http://taskhive.daw.institutmontilivi.cat/api/usuari/", {
         token: sessionStorage.tokenusuari,
       })
       .then((resultat) => {

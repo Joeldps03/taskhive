@@ -72,7 +72,7 @@ export default {
   mounted() {
   //Axios per llistar les tasques 
     axios
-      .post("http://localhost/api/tasques/", {
+      .post("http://taskhive.daw.institutmontilivi.cat/api/tasques/", {
         token: this.token,
       })
       .then((resultat) => {

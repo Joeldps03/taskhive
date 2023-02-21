@@ -265,7 +265,7 @@ export default {
     //Crida a axios per si no es tecnic
     editarTasques() {
       axios
-        .post("http://localhost/api/editartasques/", {
+        .post("http://taskhive.daw.institutmontilivi.cat/api/editartasques/", {
           id: sessionStorage.idTasca,
           token: sessionStorage.tokenusuari,
           nom: this.nom,

@@ -83,7 +83,7 @@ export default {
     onSubmit() {
       
       axios
-        .post("http://localhost/api/login/", {
+        .post("http://taskhive.daw.institutmontilivi.cat/api/login/", {
           correu: this.correu,
           contrasenya: this.contrasenya,
           token: this.token,

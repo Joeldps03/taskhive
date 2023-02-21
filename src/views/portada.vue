@@ -28,7 +28,7 @@ export default {
     generarTokenConvidat() {
       //generem token convidats
       axios
-        .get("http://localhost/api/")
+        .get("http://taskhive.daw.institutmontilivi.cat/api/")
         //pillem el valor de l'api i ho introduim dintre de resposta
         .then((resultat) => {
           this.tokenJSON = resultat.data;

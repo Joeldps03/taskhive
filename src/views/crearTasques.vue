@@ -120,7 +120,7 @@ export default {
     crearTasques() {
       // Li pasem per axios els valors posats anteriorment
       axios
-        .post("http://localhost/api/creartasca/", {
+        .post("http://taskhive.daw.institutmontilivi.cat/api/creartasca/", {
           token: sessionStorage.tokenusuari,
           nom: this.nom,
           descripcio: this.descripcio,

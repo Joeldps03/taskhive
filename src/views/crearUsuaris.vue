@@ -101,7 +101,7 @@ export default {
     crearUsuari() {
       // Li pasem per axios els valors posats anteriorment
       axios
-        .post("http://localhost/api/crearusuari/", {
+        .post("http://taskhive.daw.institutmontilivi.cat/api/crearusuari/", {
           token: sessionStorage.tokenusuari,
           nom: this.nom,
           correu: this.correu,
