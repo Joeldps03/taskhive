@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout :rol = "rol"> </layout>
       <v-main>
         <v-container class="container2">
           <div class="titul">
@@ -81,6 +81,7 @@ export default {
         //Guardem la id i el rol al session Storage
         sessionStorage.setItem("id", resultat.data.usuari.id);
         sessionStorage.setItem("rol", resultat.data.usuari.rol);
+        this.rol = sessionStorage.rol;
       })
       .catch((error) => {
         console.log(error);
