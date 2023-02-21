@@ -27,7 +27,7 @@
   >
   <!-- Si es admin es mostrarant els botons seguents -->
     <v-list dense nav>
-      <div v-if="userRole === 'admin'">
+      <div v-if="rol === 'admin'">
         <v-list-item
           prepend-icon="mdi-file-document"
           title="Tasques"
@@ -72,7 +72,7 @@
       </div>
 
       <!-- Si es tecnic es mostrarant els botons seguents -->
-      <div v-if="userRole === 'tecnic'">
+      <div v-if="rol === 'tecnic'">
         <v-list-item
           prepend-icon="mdi-file-document"
           title="Tasques"
@@ -92,7 +92,7 @@
       </div>
 
       <!-- Si es gestor es mostrarant els botons seguents -->
-      <div v-if="userRole === 'gestor'">
+      <div v-if="rol === 'gestor'">
         <v-list-item
           prepend-icon="mdi-file-document"
           title="Tasques"
@@ -137,7 +137,6 @@ export default {
     return {
       //Agafem el rol del session storage
       userRole: rol,
-      reloadPage: true,
     };
   },
   methods: {
