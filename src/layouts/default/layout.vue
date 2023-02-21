@@ -132,10 +132,11 @@
 <script>
 export default {
   name: "layout",
+  props: ["rol"],
   data() {
     return {
       //Agafem el rol del session storage
-      userRole: sessionStorage.rol,
+      userRole: rol,
       reloadPage: true,
     };
   },

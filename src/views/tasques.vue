@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout :rol="rol"> </layout>
       <v-main>
         <v-container class="container2">
           <div class="titul">
