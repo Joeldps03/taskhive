@@ -39,13 +39,6 @@ const routes = [
     component: () => import("@/views/crearUsuaris.vue"),
   },
   {
-    path: "/usuarisEditar/:id",
-    name: "usuarisEditar",
-    props: true,
-
-    component: () => import("@/views/editarUsuaris.vue"),
-  },
-  {
     path: "/usuaris",
     name: "usuaris",
 
