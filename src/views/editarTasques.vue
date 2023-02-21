@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout :rol="rol"> </layout>
       <v-main>
         <v-container class="container">
           <div class="titul">
@@ -255,6 +255,7 @@ export default {
       prioritat: "",
       estat: "pendent",
       comentaris_tecnics: "",
+      rol: "",
       loading: false,
       desserts: [],
       userRole: sessionStorage.rol,
@@ -307,6 +308,7 @@ export default {
         id: sessionStorage.idTasca,
       })
       .then((resultat) => {
+        this.rol = sessionStorage.rol;
         this.desserts = resultat.data.tasca;
       })
       .catch((error) => {

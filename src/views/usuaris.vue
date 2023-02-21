@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout :rol = "rol"> </layout>
       <v-main>
         <v-container class="container2">
           <div class="titul">
@@ -45,6 +45,7 @@ export default {
     return {
       expanded: [],
       singleExpand: false,
+      rol: "",
       desserts: [],
     };
   },
@@ -56,6 +57,7 @@ export default {
         token: sessionStorage.tokenusuari,
       })
       .then((resultat) => {
+        this.rol = sessionStorage.rol;
         this.desserts = resultat.data.usuaris;
         console.log(resultat.data.usuaris);
       })

@@ -136,7 +136,7 @@ export default {
   data() {
     return {
       //Agafem el rol del session storage
-     
+      reloadPage: true,
     };
   },
   methods: {
