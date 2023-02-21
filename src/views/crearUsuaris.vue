@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout :rol="rolLayout"> </layout>
       <v-main>
         <v-container class="container">
           <div class="titul">
@@ -90,7 +90,7 @@ export default {
       nom: "",
       correu: "",
       contrasenya: "",
-      rol: "",
+      rolLayout: "",
       loading: false,
       //Regles de camp requerit, si un camp esta buid et mostra el seguent text
       rules: [(v) => !!v || "Camp requerit"],
@@ -117,6 +117,9 @@ export default {
         });
     },
   },
+   mounted(){
+    this.rolLayout = sessionStorage.rol;
+  }
 };
 </script>
 
