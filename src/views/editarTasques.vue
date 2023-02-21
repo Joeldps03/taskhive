@@ -302,7 +302,7 @@ export default {
   mounted() {
     // Aquest axios li pasa la dada de id de tasca per que retorni un select per emplenar els camps
     axios
-      .post("http://localhost/api/llistarunatasca/", {
+      .post("http://taskhive.daw.institutmontilivi.cat/api/llistarunatasca/", {
         token: sessionStorage.tokenusuari,
         id: sessionStorage.idTasca,
       })
