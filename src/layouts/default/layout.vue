@@ -136,7 +136,7 @@ export default {
   data() {
     return {
       //Agafem el rol del session storage
-      userRole: rol,
+      userRole: sessionStorage.rol,
     };
   },
   methods: {
