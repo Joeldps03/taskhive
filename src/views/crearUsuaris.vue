@@ -58,6 +58,18 @@
                 :rules="rules"
               ></v-text-field>
             </v-col>
+
+            <v-select
+                  label="Rol"
+                  :items="[
+                    'admin',
+                    'cursant',
+                    'acabada'
+                  ]"
+                  clearable
+                  :rules="rules"
+                  v-model="estat"
+                ></v-select>
           </div>
 <!-- Boto submite de tots els camps -->
           <div class="buttonEditar2">
