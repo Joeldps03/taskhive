@@ -57,7 +57,7 @@
               clearable
               :rules="rules"
               v-model="rol"
-              ref="rol"
+            
             ></v-select>
               
             </v-col>
@@ -97,6 +97,7 @@ export default {
       contrasenya: "",
       rolLayout: "",
       loading: false,
+      rol: "gestor",
       //Regles de camp requerit, si un camp esta buid et mostra el seguent text
       rules: [(v) => !!v || "Camp requerit"],
     };
