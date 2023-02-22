@@ -51,14 +51,12 @@
             <h3>Rol</h3>
 
             <v-col cols="6">
-              <v-select
+              <v-text-field
                 v-model="rol"
                 ref="rol"
                 clearable
                 :rules="rules"
-                label="rol"
-                :items="['admin', 'gestor', 'tecnic']"
-              ></v-select>
+              ></v-text-field>
             </v-col>
           </div>
 <!-- Boto submite de tots els camps -->
