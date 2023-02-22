@@ -7,7 +7,7 @@
           <div class="titul">
             <h1>Crear usuari</h1>
           </div>
-<!-- Camps de l'usuari -->
+          <!-- Camps de l'usuari -->
           <div class="divAltres">
             <h3>Nom</h3>
 
@@ -50,28 +50,15 @@
           <div class="divAltres">
             <h3>Rol</h3>
 
-            <v-col cols="6">
-              <v-text-field
-                v-model="rol"
-                ref="rol"
-                clearable
-                :rules="rules"
-              ></v-text-field>
-            </v-col>
-
             <v-select
-                  label="Rol"
-                  :items="[
-                    'admin',
-                    'cursant',
-                    'acabada'
-                  ]"
-                  clearable
-                  :rules="rules"
-                  v-model="estat"
-                ></v-select>
+              label="Rol"
+              :items="['admin', 'tecnic', 'gestor']"
+              clearable
+              :rules="rules"
+              v-model="rol"
+            ></v-select>
           </div>
-<!-- Boto submite de tots els camps -->
+          <!-- Boto submite de tots els camps -->
           <div class="buttonEditar2">
             <v-btn
               :loading="loading"
@@ -129,9 +116,9 @@ export default {
         });
     },
   },
-   created(){
+  created() {
     this.rolLayout = sessionStorage.rol;
-  }
+  },
 };
 </script>
 

@@ -24,20 +24,13 @@
             <div class="divCentreTasca">
               <h3>Estat</h3>
 
-              <v-col cols="100">
-
-                <v-select
-                  label="Estat"
-                  :items="[
-                    'pendent',
-                    'cursant',
-                    'acabada'
-                  ]"
-                  clearable
-                  :rules="rules"
-                  v-model="estat"
-                ></v-select>
-              </v-col>
+              <v-select
+                label="Estat"
+                :items="['pendent', 'cursant', 'acabada']"
+                clearable
+                :rules="rules"
+                v-model="estat"
+              ></v-select>
             </div>
 
             <div class="divCentreTasca">
