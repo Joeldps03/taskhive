@@ -7,7 +7,7 @@
           <div class="titul">
             <h1>Crear tasca</h1>
           </div>
-          <!-- Camps de la tasca -->
+<!-- Camps de la tasca -->
           <div class="divAltres">
             <h3>Tasca</h3>
 
@@ -24,13 +24,16 @@
             <div class="divCentreTasca">
               <h3>Estat</h3>
 
-              <v-select
+              <v-col cols="100">
+                <v-select
                 label="Estat"
                 :items="['pendent', 'cursant', 'acabada']"
                 clearable
                 :rules="rules"
                 v-model="estat"
               ></v-select>
+
+              </v-col>
             </div>
 
             <div class="divCentreTasca">
@@ -75,7 +78,7 @@
               </v-col>
             </div>
           </div>
-          <!-- Boto submite de tots els camps -->
+<!-- Boto submite de tots els camps -->
           <div class="buttonEditar2">
             <v-btn
               :loading="loading"
@@ -101,6 +104,7 @@ export default {
   components: { layout },
   name: "crearTasques",
   data() {
+    
     return {
       nom: "",
       descripcio: "",
@@ -115,6 +119,7 @@ export default {
     };
   },
   methods: {
+
     //Metode de crear Tasques
     crearTasques() {
       // Li pasem per axios els valors posats anteriorment
@@ -137,10 +142,11 @@ export default {
         });
     },
   },
-
-  created() {
+  
+  created(){
     this.rol = sessionStorage.rol;
-  },
+  }
+  
 };
 </script>
 
