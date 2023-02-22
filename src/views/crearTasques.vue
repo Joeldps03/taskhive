@@ -106,7 +106,7 @@ export default {
       descripcio: "",
       id_usuari: "",
       prioritat: "",
-      estat: "",
+      estat: "pendent",
       comentaris_tecnics: "",
       rol: "",
       loading: false,
