@@ -25,11 +25,15 @@
               <h3>Estat</h3>
 
               <v-col cols="100">
-                <v-text-field
-                  clearable
-                  :rules="rules"
-                  v-model="estat"
-                ></v-text-field>
+                <v-select
+                    clearable
+                    :rules="rules"
+                    v-model="estat"
+                    :label="
+                      this.desserts.length > 0 ? this.desserts[0].estat : ''
+                    "
+                    :items="['pendent', 'cursant', 'acabada']"
+                  ></v-select>
               </v-col>
             </div>
 
@@ -107,7 +111,7 @@ export default {
       descripcio: "",
       id_usuari: "",
       prioritat: "",
-      estat: "",
+      estat: "pendent",
       comentaris_tecnics: "",
       rol: "",
       loading: false,

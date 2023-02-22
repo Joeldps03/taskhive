@@ -51,12 +51,15 @@
             <h3>Rol</h3>
 
             <v-col cols="6">
-              <v-text-field
-                v-model="rol"
-                ref="rol"
-                clearable
-                :rules="rules"
-              ></v-text-field>
+              <v-select
+                    clearable
+                    :rules="rules"
+                    v-model="rol"
+                    :label="
+                      this.desserts.length > 0 ? this.desserts[0].estat : ''
+                    "
+                    :items="['admin', 'gestor', 'tecnic']"
+                  ></v-select>
             </v-col>
           </div>
 <!-- Boto submite de tots els camps -->
@@ -91,6 +94,7 @@ export default {
       correu: "",
       contrasenya: "",
       rolLayout: "",
+      rol:"gestor",
       loading: false,
       //Regles de camp requerit, si un camp esta buid et mostra el seguent text
       rules: [(v) => !!v || "Camp requerit"],
