@@ -15,14 +15,33 @@ class bdd
     private $password = "";
     private $database = "taskhive";
 
-    //funció constructor
+    /*
+    Function: constructor
+    Function per crear l'objecte base de dades
+    Parameters:
+        Cap
+    Returns:
+        No retorna res, és un procediment.
+
+*/
     public function __construct()
     {
         BdD::connect($this->servername, $this->username, $this->password, $this->database);
     }
 
     public static $connection;
-    //FUnció per a establir conecció amb la base de daddes
+
+/*
+    Function: connect
+    Function per a establir conecció amb la base de daddes
+    Parameters:
+        $servername ,Nom del Servidor on està la base de dades
+        $username , Usuari per Connectarse a la base de dades
+        $password , Contrassenya de l'usuari
+        $database , Especifiquem base de dades
+    Returns:
+        No Retorna res, és un procediment.
+*/
     public static function connect($host, $user, $password, $database)
     {
         if (!isset(self::$connection)) {
@@ -35,7 +54,16 @@ class bdd
         }
     }
 
-    //Comprobem que l'usuari està registrat
+
+/*
+    Function: login
+    Comprobem que l'usuari està registrat
+    Parameters:
+        $email ,Correu del usuari 
+        $contrassenya , Contrassenya de l'usuari
+    Returns:
+        Token en cas de un login exitos, false en cas contrari
+*/
     public static function login($email, $contrasenya)
     {
         $SQL = "SELECT * FROM usuaris WHERE email = :email AND contrasenya = :contrasenya";
@@ -53,7 +81,14 @@ class bdd
             return false;
     }
 
-    //funció per a retornar la id de un usuari a partir del nom
+    /*
+    Function: get_id
+    Function per a Retornar la id de un usuari a partir del nom
+    Parameters:
+        $nom ,nom del usuari 
+    Returns:
+        La id de l'usuari
+*/
     public static function get_id($nom)
     {
         $SQL = "SELECT * FROM usuaris WHERE nom = :nom";
@@ -65,7 +100,14 @@ class bdd
     }
 
 
-    //Funció per a llsitar les tàsques del tèctic
+    /*
+    Function: llistarTasquesUser
+    Function per a llsitar les tàsques del tèctic
+    Parameters:
+        $id_usuari ,nom del usuari 
+    Returns:
+        Una llista de tàsques
+*/
     public static function llistarTasquesUser($id_usuari)
     {
         try 
@@ -91,6 +133,15 @@ class bdd
             return "Error: " . $e->getMessage();
         }
     }
+
+/*
+    Function: llistarunatasca
+    Function per a llsitar una tasca, es fa servir a l'hora de interactuar amb una tasca
+    Parameters:
+        $id ,id de la tasca
+    Returns:
+        Una llista de una tasca
+*/
 
     public static function llistarunatasca($id)
     {
@@ -119,7 +170,15 @@ class bdd
     }
     
 
-    //listar usuaris per a l'admin i el gestor
+
+    /*
+    Function: llistarTasques
+    listar tasques per a l'admin i el gestor, llista tots els registres de la taula
+    Parameters:
+        Cap
+    Returns:
+        Una llista de tàsques
+*/
     public static function llistarTasques()
     {
         try 
@@ -144,8 +203,20 @@ class bdd
         }
     }
 
-    //Funció per a Editar les tàsques per admin i gestor
-    //Poden editar tot
+    /*
+    Function: editartasques
+    Function per a Editar les tàsques per admin i gestor, Poden editar tot
+    Parameters:
+        $id, id de la tasca,
+        $nom, Nom de la tasca,
+        $descripcio, Descripció de la tasca,
+        $id_usuari, id del usuari,
+        $prioritat, Urgència de la tasca,
+        $estat, En quin estat es trova,
+        $comentari, Comentari del tècnic.
+    Returns:
+        No retorna res, és un procediment.
+*/
     public static function editartasques($id, $nom, $descripcio, $id_usuari, $prioritat, $estat, $comentari)
     {
         try {
@@ -169,8 +240,17 @@ class bdd
         }
     }
 
-    //Editar tasques pel tècnic
-    //només estat i comentaris
+        /*
+    Function: editartasquestecnic
+    Editar tasques pel tècnic, només estat i comentaris
+    Parameters:
+        $id, id de la tasca,
+        $estat, En quin estat es trova,
+        $comentari, Comentari del tècnic.
+    Returns:
+        No retorna res, és un procediment.
+*/
+
     public static function editartasquestecnic($id, $estat, $comentari)
     {
         try {
@@ -190,8 +270,19 @@ class bdd
         }
     }
 
-    //Funció per a crear les tàsques
-    //Usuari tèctic no te accés
+/*
+    Function: creartasques
+    Function per a crear les tàsques, Usuari tèctic no te accés
+    Parameters:
+        $nom, Nom de la tasca,
+        $descripcio, Descripció de la tasca,
+        $id_usuari, id del usuari,
+        $prioritat, Urgència de la tasca,
+        $estat, En quin estat es trova,
+        $comentari, Comentari del tècnic.
+    Returns:
+        No retorna res, és un procediment.
+*/
     public static function creartasques($nom, $descripcio, $id_usuari, $prioritat, $estat, $comentaris_tecnics)
     {
         try {
@@ -215,7 +306,16 @@ class bdd
         }
     }
 
-    //Eliminar tasques
+
+    /*
+    Function: eliminartasques
+    Function per eliminar tasques
+    Parameters:
+        $id, id de la tasca,
+    Returns:
+        No retorna res, és un procediment.
+*/
+
     public static function eliminartasques($id){
         try {
             //consulta d'inserció
@@ -233,8 +333,18 @@ class bdd
 
     }
 
-    //Funció per a crear les Usuaris
-    //Funció disponible per a l'admin
+
+/*
+    Function: crearusuari
+    Function per a crear les Usuaris, Function disponible per a l'admin
+    Parameters:
+        $nom, Nom de l'usuari ,
+        $mail, mail de l'usuari,
+        $rol, rol del usuari,
+        $password, Contrassenya de l'usuari
+    Returns:
+        No retorna res, és un procediment.
+*/
     public static function crearusuari($nom, $mail, $rol, $password)
     {
         try 
@@ -260,10 +370,37 @@ class bdd
         }
     }
 
-   
+    //Funció per a editar les Usuaris
+    // funció disponible per a l'admin
+    public static function editarusuari($id,$nom, $email, $rol, $contrasenya)
+    {
+        try {
+            //consulta d'inserció
+            $SQL = "UPDATE usuaris SET nom=:nom, email=:email, rol=:rol, contrasenya=:contrasenya WHERE id = :id";
+            $consulta = (BdD::$connection)->prepare($SQL);
+            $consulta->bindParam("nom", $nom);
+            $consulta->bindParam("email", $email);
+            $consulta->bindParam("rol", $rol);
+            $consulta->bindParam("contrasenya", $contrasenya);
+            $consulta->bindParam("id", $id);
+            try {
+                $result = $consulta->execute();
+            } catch (PDOException $e) {
+                echo "Errada en la inserció: " . $e->getMessage();
+            }
+        } catch (PDOException $e) {
+            echo "Errada en la conexió: " . $e->getMessage();
+        } 
+    }
 
-    //Funció per a llistar les Usuaris
-    //Disponible per a l'admin
+/*
+    Function: editarusuari
+    Function per a llistar les Usuaris, disponible per a l'admin
+    Parameters:
+        Cap
+    Returns:
+        Una llista d'usuaris
+*/
     public static function llistarusuaris()
     {
         try 
@@ -288,7 +425,15 @@ class bdd
         }
     }
 
-    //Funció per a incerir token a la taula dels usuaris
+
+/*
+    Function: inserirtoken_users
+    Function per a incerir token a la taula dels usuaris
+    Parameters:
+        $email, Correu del usuari
+    Returns:
+        Token de l'usuari
+*/
     public static function inserirtoken_users($email)
     {
         $token=bin2hex(random_bytes(9));
@@ -310,7 +455,15 @@ class bdd
         } 
     }
 
-    //Fem insert de token a la taula de tokens
+/*
+    Function: inserirtoken_tokens
+    Fem insert de token a la taula de tokens
+    Parameters:
+        Cap
+    Returns:
+        Token de l'usuari
+*/
+
     public static function inserirtoken_tokens()
     {
         try {
@@ -330,7 +483,14 @@ class bdd
         }
     }
 
-    //Funció per a eliminar tokens de la taula de tokens
+/*
+    Function: deletetokendetokens
+    Function per a eliminar tokens de la taula de tokens
+    Parameters:
+        $token, Token per eliminar
+    Returns:
+        No retorna res, és un procediment.
+*/
     public static function deletetokendetokens($token){
         try {
             //Consulta per eliminar el registre de la taula de tokens
@@ -348,7 +508,15 @@ class bdd
 
     }
 
-    //Mirar si el token és existent
+/*
+    Function: existeixtokentokens
+    Mirar si el token és existent a la taula de token convidats
+    Parameters:
+        $token, Token per consultar
+    Returns:
+        true si existeix, false si no.,
+*/
+
     public static function existeixtokentokens($token)
     {
         //Select per mirar el token de les dades
@@ -363,7 +531,14 @@ class bdd
             return false;
     }
 
-    //Mirar si el token és existent i retorna tot el usuari
+    /*
+    Function: existeixtokenusuaris
+    Mirar si el token és existent i retorna tot el usuari
+    Parameters:
+        $token, Token per consultar 
+    Returns:
+        Usuari si existeix, false si no.,
+*/
     public static function existeixtokenusuaris($token)
     {
         $result=null;
@@ -381,6 +556,14 @@ class bdd
             return false;
     }
 
+/*
+    Function: existeixtokenusuarisbool
+    Mirar si el token és existent i retorna tot el usuari
+    Parameters:
+        $token, Token per consultar 
+    Returns:
+        true si existeix, false si no.,
+*/
     public static function existeixtokenusuarisbool($token)
     {
         $result=null;
