@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout :rol="rolLayout"> </layout>
       <v-main>
         <v-container class="container">
           <div class="titul">
@@ -51,13 +51,18 @@
             <h3>Rol</h3>
 
             <v-col cols="6">
-              <v-text-field
-                v-model="rol"
-                ref="rol"
-                clearable
-                :rules="rules"
-              ></v-text-field>
+              <v-select
+              label="Rol"
+              :items="['admin', 'tecnic', 'gestor']"
+              clearable
+              :rules="rules"
+              v-model="rol"
+            
+            ></v-select>
+              
             </v-col>
+
+            
           </div>
 <!-- Boto submite de tots els camps -->
           <div class="buttonEditar2">
@@ -90,8 +95,9 @@ export default {
       nom: "",
       correu: "",
       contrasenya: "",
-      rol: "",
+      rolLayout: "",
       loading: false,
+      rol: "gestor",
       //Regles de camp requerit, si un camp esta buid et mostra el seguent text
       rules: [(v) => !!v || "Camp requerit"],
     };
@@ -117,6 +123,9 @@ export default {
         });
     },
   },
+   created(){
+    this.rolLayout = sessionStorage.rol;
+  }
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout :rol="rol"> </layout>
       <v-main>
         <v-container class="container">
           <div class="titul">
@@ -25,11 +25,14 @@
               <h3>Estat</h3>
 
               <v-col cols="100">
-                <v-text-field
-                  clearable
-                  :rules="rules"
-                  v-model="estat"
-                ></v-text-field>
+                <v-select
+                label="Estat"
+                :items="['pendent', 'cursant', 'acabada']"
+                clearable
+                :rules="rules"
+                v-model="estat"
+              ></v-select>
+
               </v-col>
             </div>
 
@@ -83,7 +86,7 @@
               size="large"
               type="submit"
               variant="outlined"
-              @click="crearTasques"
+              @click="crearTasques()"
             >
               Crear
             </v-btn>
@@ -107,8 +110,9 @@ export default {
       descripcio: "",
       id_usuari: "",
       prioritat: "",
-      estat: "",
+      estat: "pendent",
       comentaris_tecnics: "",
+      rol: "",
       loading: false,
       //Regles de camp requerit, si un camp esta buid et mostra el seguent text
       rules: [(v) => !!v || "Camp requerit"],
@@ -138,6 +142,11 @@ export default {
         });
     },
   },
+  
+  created(){
+    this.rol = sessionStorage.rol;
+  }
+  
 };
 </script>
 

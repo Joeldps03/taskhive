@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout :rol="rol"> </layout>
       <v-main>
         <v-container class="container">
           <div class="titul">
@@ -255,6 +255,7 @@ export default {
       prioritat: "",
       estat: "pendent",
       comentaris_tecnics: "",
+      rol: "",
       loading: false,
       desserts: [],
       userRole: sessionStorage.rol,
@@ -300,6 +301,9 @@ export default {
     },
   },
   mounted() {
+    this.rol = sessionStorage.rol;
+
+     
     // Aquest axios li pasa la dada de id de tasca per que retorni un select per emplenar els camps
     axios
       .post("http://taskhive.daw.institutmontilivi.cat/api/llistarunatasca/", {
@@ -307,6 +311,7 @@ export default {
         id: sessionStorage.idTasca,
       })
       .then((resultat) => {
+       
         this.desserts = resultat.data.tasca;
       })
       .catch((error) => {

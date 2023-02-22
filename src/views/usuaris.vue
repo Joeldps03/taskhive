@@ -1,7 +1,7 @@
 <template>
   <v-card>
     <v-layout>
-      <layout> </layout>
+      <layout :rol = "rol"> </layout>
       <v-main>
         <v-container class="container2">
           <div class="titul">
@@ -45,17 +45,20 @@ export default {
     return {
       expanded: [],
       singleExpand: false,
+      rol: "",
       desserts: [],
     };
   },
   methods: {},
   mounted() {
+    this.rol = sessionStorage.rol;
     //Axios per llistar usuaris
     axios
       .post("http://taskhive.daw.institutmontilivi.cat/api/usuari/", {
         token: sessionStorage.tokenusuari,
       })
       .then((resultat) => {
+        
         this.desserts = resultat.data.usuaris;
         console.log(resultat.data.usuaris);
       })

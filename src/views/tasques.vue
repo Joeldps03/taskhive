@@ -81,7 +81,10 @@ export default {
         //Guardem la id i el rol al session Storage
         sessionStorage.setItem("id", resultat.data.usuari.id);
         sessionStorage.setItem("rol", resultat.data.usuari.rol);
-      })
+        this.rol = sessionStorage.rol;
+        
+ 
+ })
       .catch((error) => {
         console.log(error);
       });
