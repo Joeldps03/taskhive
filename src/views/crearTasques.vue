@@ -25,13 +25,13 @@
               <h3>Estat</h3>
 
               <v-col cols="100">
-                <v-text-field
+                <v-select
                   clearable
                   :rules="rules"
                   :items="['pendent', 'cursant', 'acabada']"
                   v-model="estat"
                   label="pendent"
-                ></v-text-field>
+                ></v-select>
               </v-col>
             </div>
 
