@@ -29,6 +29,7 @@
                   clearable
                   :rules="rules"
                   v-model="estat"
+                  label="estat"
                   :items="['pendent', 'cursant', 'acabada']"
                 ></v-select>
               </v-col>

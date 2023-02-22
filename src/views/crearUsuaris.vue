@@ -56,6 +56,7 @@
                 ref="rol"
                 clearable
                 :rules="rules"
+                label="rol"
                 :items="['admin', 'gestor', 'tecnic']"
               ></v-select>
             </v-col>
