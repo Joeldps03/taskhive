@@ -28,7 +28,9 @@
                 <v-text-field
                   clearable
                   :rules="rules"
+                  :items="['pendent', 'cursant', 'acabada']"
                   v-model="estat"
+                  label="pendent"
                 ></v-text-field>
               </v-col>
             </div>
