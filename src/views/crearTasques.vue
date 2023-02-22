@@ -86,7 +86,7 @@
               size="large"
               type="submit"
               variant="outlined"
-              @click="crearTasques"
+              @click="crearTasques()"
             >
               Crear
             </v-btn>
