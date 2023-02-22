@@ -14,8 +14,8 @@
             <v-col cols="100">
               <v-text-field
                 clearable
-                :rules= "rules"
-                v-model= "nom"
+                :rules="rules"
+                v-model="nom"
               ></v-text-field>
             </v-col>
           </div>
@@ -26,11 +26,11 @@
 
               <v-col cols="100">
                 <v-select
-                    clearable
-                    :rules= "rules"
-                    v-model= "estat"
-                    :items="['pendent', 'cursant', 'acabada']"
-                  ></v-select>
+                  clearable
+                  :rules="rules"
+                  v-model="estat"
+                  :items="['pendent', 'cursant', 'acabada']"
+                ></v-select>
               </v-col>
             </div>
 
@@ -40,8 +40,8 @@
               <v-col cols="100">
                 <v-text-field
                   clearable
-                  :rules= "rules"
-                  v-model= "prioritat"
+                  :rules="rules"
+                  v-model="prioritat"
                 ></v-text-field>
               </v-col>
             </div>
@@ -52,8 +52,8 @@
               <v-col cols="100">
                 <v-text-field
                   clearable
-                  :rules= "rules"
-                  v-model= "id_usuari"
+                  :rules="rules"
+                  v-model="id_usuari"
                 ></v-text-field>
               </v-col>
             </div>
@@ -64,7 +64,7 @@
               <h3>Descripció</h3>
 
               <v-col cols="15">
-                <v-textarea clearable v-model= "descripcio"></v-textarea>
+                <v-textarea clearable v-model="descripcio"></v-textarea>
               </v-col>
             </div>
 
@@ -72,14 +72,14 @@
               <h3>Comentari</h3>
 
               <v-col cols="15">
-                <v-textarea clearable v-model= "comentaris_tecnics"></v-textarea>
+                <v-textarea clearable v-model="comentaris_tecnics"></v-textarea>
               </v-col>
             </div>
           </div>
 <!-- Boto submite de tots els camps -->
           <div class="buttonEditar2">
             <v-btn
-              :loading= "loading"
+              :loading="loading"
               color="blue"
               size="large"
               type="submit"

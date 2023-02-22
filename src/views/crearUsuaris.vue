@@ -13,10 +13,10 @@
 
             <v-col cols="6">
               <v-text-field
-                v-model= "nom"
+                v-model="nom"
                 ref="nom"
                 clearable
-                :rules= "rules"
+                :rules="rules"
               ></v-text-field>
             </v-col>
           </div>
@@ -26,10 +26,10 @@
 
             <v-col cols="10">
               <v-text-field
-                v-model= "correu"
+                v-model="correu"
                 ref="correu"
                 clearable
-                :rules= "rules"
+                :rules="rules"
               ></v-text-field>
             </v-col>
           </div>
@@ -42,7 +42,7 @@
                 v-model="contrasenya"
                 ref="contrasenya"
                 clearable
-                :rules= "rules"
+                :rules="rules"
               ></v-text-field>
             </v-col>
           </div>
@@ -52,17 +52,18 @@
 
             <v-col cols="6">
               <v-select
-                    clearable
-                    :rules= "rules"
-                    v-model= "rol"
-                    :items="['admin', 'gestor', 'tecnic']"
-                  ></v-select>
+                v-model="rol"
+                ref="rol"
+                clearable
+                :rules="rules"
+                :items="['admin', 'gestor', 'tecnic']"
+              ></v-select>
             </v-col>
           </div>
 <!-- Boto submite de tots els camps -->
           <div class="buttonEditar2">
             <v-btn
-              :loading= "loading"
+              :loading="loading"
               color="blue"
               size="large"
               type="submit"
@@ -91,7 +92,6 @@ export default {
       correu: "",
       contrasenya: "",
       rolLayout: "",
-      rol:"gestor",
       loading: false,
       //Regles de camp requerit, si un camp esta buid et mostra el seguent text
       rules: [(v) => !!v || "Camp requerit"],
