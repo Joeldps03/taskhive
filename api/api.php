@@ -2,6 +2,14 @@
 include './bdd.php';
 class Server
 {
+    /*
+    Function: serve
+    Funció On farem totes les crides al fitxer bdd.php
+    Parameters:
+        Cap
+    Returns:
+        Headers d'estat del procediment
+*/
     public function serve()
     {
         $bdd = new bdd();
