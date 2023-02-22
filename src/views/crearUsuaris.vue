@@ -55,9 +55,6 @@
                     clearable
                     :rules="rules"
                     v-model="rol"
-                    :label="
-                      this.desserts.length > 0 ? this.desserts[0].estat : ''
-                    "
                     :items="['admin', 'gestor', 'tecnic']"
                   ></v-select>
             </v-col>

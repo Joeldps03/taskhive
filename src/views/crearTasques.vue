@@ -29,9 +29,6 @@
                     clearable
                     :rules="rules"
                     v-model="estat"
-                    :label="
-                      this.desserts.length > 0 ? this.desserts[0].estat : ''
-                    "
                     :items="['pendent', 'cursant', 'acabada']"
                   ></v-select>
               </v-col>
